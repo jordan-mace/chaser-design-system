@@ -1,45 +1,103 @@
 # Chaser Design System
 
-## About
+A modern, type-safe React component library built with [Vanilla Extract](https://vanilla-extract.style/) for zero-runtime CSS-in-JS.
 
-Chaser is a simple design system with components built with Vanilla Extract.
+## Installation
 
-## Usage
+```bash
+npm install chaser-design-system
+```
 
-To use Chaser, install it via npm, then import the layers and reset files. Once those are imported you can use the components as normal.
+**Peer Dependencies:**
+
+```bash
+npm install @vanilla-extract/css @vanilla-extract/sprinkles clsx react react-dom
+```
+
+## Quick Start
+
+Import the CSS layers and reset in your app entry point:
 
 ```typescript
 import 'chaser-design-system/layers.css';
 import 'chaser-design-system/cssReset.css';
-import { Button } from 'chaser-design-system';
+import { Button, Input, Form } from 'chaser-design-system';
 
 const App = () => {
   return (
-    <div className="content">
-      <Button
-        label="Click Me"
-        variant="primary"
-        onClick={() => alert('Button clicked!')}
+    <Form>
+      <Input
+        label="Email"
+        type="email"
+        placeholder="Enter your email"
+        fullWidth
       />
-    </div>
+      <Button
+        label="Submit"
+        variant="primary"
+        onClick={() => console.log('Submitted!')}
+      />
+    </Form>
   );
 };
-
-export default App;
 ```
 
-## Development
+## Available Components
 
-### Get started
+- **Button** - Primary and secondary button variants
+- **Input** - Form inputs with optional labels
+- **Form** - Form container with consistent spacing
+- **List & ListItem** - Structured list components
+- **Navbar & NavbarItem** - Navigation components
 
-Build the library:
+## Features
 
-```bash
-pnpm build
+- ✨ Zero-runtime CSS-in-JS with Vanilla Extract
+- 🎨 Consistent design tokens and theming
+- 📱 Responsive design with built-in breakpoints
+- 🔧 Full TypeScript support
+- ⚡ Tree-shakeable components
+
+## Basic Usage
+
+```typescript
+// Button
+<Button variant="primary" label="Click me" onClick={handleClick} />
+
+// Input
+<Input label="Username" placeholder="Enter username" fullWidth />
+
+// Lists
+<List>
+  <ListItem>Item 1</ListItem>
+  <ListItem>Item 2</ListItem>
+</List>
+
+// Navigation
+<Navbar>
+  <NavbarItem>Home</NavbarItem>
+  <NavbarItem>About</NavbarItem>
+</Navbar>
 ```
 
-Build the library in watch mode:
+## Custom Styling
 
-```bash
-pnpm dev
+Access theme variables for custom styling:
+
+```typescript
+import { vars } from 'chaser-design-system/theme.css';
+
+const customStyle = {
+  color: vars.colors.textPrimary,
+  fontFamily: vars.fontFamily.body,
+};
 ```
+
+## Requirements
+
+- React 19.2.0+
+- Modern bundler with CSS support
+
+---
+
+For full documentation and examples, visit the [GitHub repository](https://github.com/jordan-mace/chaser-design-system).
