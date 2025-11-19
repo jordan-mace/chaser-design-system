@@ -1,0 +1,22 @@
+{
+  "compilerOptions": {
+    "jsx": "react",
+    "lib": ["ES2022"],
+    "module": "ESNext",
+    "noEmit": true,
+    "strict": true,
+    "allowJs": true,
+    "skipLibCheck": true,
+    "isolatedModules": true,
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
+    "moduleResolution": "bundler",
+    "useDefineForClassFields": true
+  },
+  "include": [
+    "src/components/*/*.tsx",
+    "src/components/*/*.ts",
+    "src/index.ts"
+  ],
+  "exclude": ["node_modules"]
+}

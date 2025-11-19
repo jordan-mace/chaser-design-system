@@ -1,0 +1,28 @@
+import { defineConfig } from '@rslib/core';
+import { pluginReact } from '@rsbuild/plugin-react';
+
+export default defineConfig({
+  lib: [
+    {
+      format: 'esm',
+      syntax: ['node 18'],
+      dts: true,
+      source: {
+        entry: {
+          index: [
+            'src/index.ts',
+            'src/components/index.ts',
+            'src/components/*/*.{ts,tsx}',
+            'src/styles/*.ts',
+            'src/styles/*.css.ts',
+          ],
+          'layers.css': 'src/styles/layers.css.ts',
+          'reset.css': 'src/styles/reset.css.ts',
+          'theme.css': 'src/styles/theme.css.ts',
+        },
+      },
+      bundle: false,
+    },
+  ],
+  plugins: [pluginReact()],
+});
