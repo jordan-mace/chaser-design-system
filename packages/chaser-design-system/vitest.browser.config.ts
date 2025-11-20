@@ -9,6 +9,7 @@ export default defineConfig({
     include: ['@vanilla-extract/sprinkles/createRuntimeSprinkles'],
   },
   test: {
+    include: ['src/**/*.test.tsx'],
     browser: {
       enabled: true,
       headless: true,
