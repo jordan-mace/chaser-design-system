@@ -36,4 +36,4 @@ jobs:
       - name: Build
         run: pnpm run build
       - name: Publish Package
-        run: npm publish --no-git-checks
+        run: pnpm run publish
