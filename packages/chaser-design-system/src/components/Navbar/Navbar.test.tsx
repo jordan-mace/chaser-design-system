@@ -5,7 +5,7 @@ import React from 'react';
 import NavbarItem from './NavbarItem';
 
 describe('Navbar', () => {
-  it('renders correctly', async () => {
+  it('renders navbar correctly', async () => {
     const { container } = await render(
       <Navbar>
         <NavbarItem>Item 1</NavbarItem>

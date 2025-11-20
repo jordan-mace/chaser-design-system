@@ -4,7 +4,7 @@ import { Header, P } from './';
 import React from 'react';
 
 describe('P', () => {
-  it('renders correctly', async () => {
+  it('renders p correctly', async () => {
     const { container } = await render(<P>Hello</P>);
     expect(container).toMatchScreenshot();
   });

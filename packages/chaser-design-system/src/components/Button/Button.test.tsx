@@ -4,7 +4,7 @@ import Button from './Button';
 import React from 'react';
 
 describe('Button', () => {
-  it('renders correctly', async () => {
+  it('renders primary button correctly', async () => {
     const { container } = await render(
       <Button variant={'primary'} label={'Hello'} />,
     );

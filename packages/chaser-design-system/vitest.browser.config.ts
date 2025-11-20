@@ -5,6 +5,9 @@ import { vanillaExtractPlugin } from '@vanilla-extract/vite-plugin';
 
 export default defineConfig({
   plugins: [react(), vanillaExtractPlugin()],
+  optimizeDeps: {
+    include: ['@vanilla-extract/sprinkles/createRuntimeSprinkles'],
+  },
   test: {
     browser: {
       enabled: true,

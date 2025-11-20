@@ -5,7 +5,7 @@ import React from 'react';
 import ListItem from './ListItem';
 
 describe('List', () => {
-  it('renders correctly', async () => {
+  it('renders list correctly', async () => {
     const { container } = await render(
       <List>
         <ListItem>Item 1</ListItem>

@@ -7,7 +7,7 @@ import { Input } from '../Input';
 import { Button } from '../Button';
 
 describe('Form', () => {
-  it('renders correctly', async () => {
+  it('renders form correctly', async () => {
     const { container } = await render(
       <Form>
         <P>Test Form</P>
