@@ -1,4 +1,5 @@
 import { defineProperties, createSprinkles } from '@vanilla-extract/sprinkles';
+import { componentsLayer } from './layers.css';
 
 const space = {
   none: 0,
@@ -10,6 +11,7 @@ const space = {
 };
 
 const responsiveProperties = defineProperties({
+  '@layer': componentsLayer,
   conditions: {
     mobile: {},
     tablet: { '@media': 'screen and (min-width: 768px)' },
