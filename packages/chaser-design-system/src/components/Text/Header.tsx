@@ -9,8 +9,10 @@ type HeaderProps = {
 };
 
 const Header = ({ variant, label, className }: HeaderProps) => {
-  const Tag = variant;
-  return <Tag className={clsx(className, text, heading)}>{label}</Tag>;
+  return React.createElement(variant, {
+    className: clsx(className, text, heading),
+    children: label,
+  });
 };
 
 export default Header;
