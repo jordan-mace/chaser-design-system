@@ -15,6 +15,8 @@ export default defineConfig({
             'src/components/*/*.{ts,tsx}',
             'src/styles/*.ts',
             'src/styles/*.css.ts',
+            '!**/*/*.stories.{ts,tsx}',
+            '!**/*/*.test.{ts,tsx}',
           ],
           'layers.css': 'src/styles/layers.css.ts',
           'reset.css': 'src/styles/reset.css.ts',
