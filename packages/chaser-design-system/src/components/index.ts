@@ -5,4 +5,4 @@ export { Form, FormInput } from './Form';
 export { Navbar, NavbarItem } from './Navbar';
 export { Card } from './Card';
 export { Alert } from './Alert';
-export * from './Text';
+export { P, Header } from './Text';
