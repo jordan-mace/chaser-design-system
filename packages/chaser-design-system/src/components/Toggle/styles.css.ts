@@ -70,14 +70,6 @@ export const toggleTrackUnchecked = styleWithLayer({
   backgroundColor: vars.colors.borderDefault,
 });
 
-export const toggleTrackChecked = styleWithLayer({
-  backgroundColor: vars.colors.buttonBackgroundPrimary,
-});
-
-export const toggleTrackUnchecked = styleWithLayer({
-  backgroundColor: vars.colors.borderDefault,
-});
-
 export const toggleThumb = styleWithLayer({
   borderRadius: '50%',
   backgroundColor: vars.colors.backgroundDefault,
@@ -104,14 +96,14 @@ export const toggleThumbSizes = styleVariants({
 });
 
 export const toggleThumbChecked = styleWithLayer({
-  transform: 'translateY(-50%) translateX(calc(100% - 0.75rem))',
+  transform: 'translateY(-50%) translateX(1.25rem)',
   backgroundColor: vars.colors.backgroundDefault,
   selectors: {
     '[data-size="small"] &': {
-      transform: 'translateY(-50%) translateX(calc(100% - 0.5rem))',
+      transform: 'translateY(-50%) translateX(1rem)',
     },
     '[data-size="large"] &': {
-      transform: 'translateY(-50%) translateX(calc(100% - 1rem))',
+      transform: 'translateY(-50%) translateX(1.5rem)',
     },
   },
 });
