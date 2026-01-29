@@ -17,8 +17,8 @@
     "lint": "lerna run lint",
     "format": "lerna run format",
     "clean": "lerna run clean && lerna clean --yes",
-    "storybook": "lerna run storybook --scope=chaser-design-system",
-    "build-storybook": "lerna run build-storybook --scope=chaser-design-system",
+    "storybook": "lerna run storybook --scope=@jordan-mace/chaser-design-system",
+    "build-storybook": "lerna run build-storybook --scope=@jordan-mace/chaser-design-system",
     "changeset": "changeset",
     "version": "changeset version",
     "release": "lerna run build && changeset publish"
