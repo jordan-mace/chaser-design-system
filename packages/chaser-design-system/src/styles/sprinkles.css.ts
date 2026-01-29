@@ -61,13 +61,6 @@ const responsiveProperties = defineProperties({
 });
 
 export const colors = {
-  textPrimary: '#615D6C',
-  textSecondary: '#797486',
-  textDisabled: '#A5A2AE',
-  borderDefault: '#D0CED4',
-  borderMuted: '#EDECEE',
-  backgroundDefault: '#FAFAFA',
-  backgroundMuted: '#F8FAFB',
   // Generated color tokens from base palette [CAE5FF, ACEDFF, 89BBFE, 6F8AB7, 615D6C]
   'c1-50': '#F5FAFE',
   'c1-100': '#DDEEFD',

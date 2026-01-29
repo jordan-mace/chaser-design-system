@@ -1,28 +1,27 @@
 import { styleVariants } from '@vanilla-extract/css';
-import { colors } from '../../styles/sprinkles.css';
 import { vars } from '../../styles/theme.css';
 import { styleWithLayer } from '../../styles/utils';
 
 export const alertVariants = styleVariants({
   success: {
-    backgroundColor: colors['c2-50'], // Light cyan-ish for success
-    borderLeftColor: colors['c2-500'],
-    color: colors['c2-800'],
+    backgroundColor: vars.colors.alertSuccessBackground,
+    borderLeftColor: vars.colors.alertSuccessBorder,
+    color: vars.colors.alertSuccessText,
   },
   warning: {
-    backgroundColor: colors['c3-50'], // Light blue for warning
-    borderLeftColor: colors['c3-500'],
-    color: colors['c3-800'],
+    backgroundColor: vars.colors.alertWarningBackground,
+    borderLeftColor: vars.colors.alertWarningBorder,
+    color: vars.colors.alertWarningText,
   },
   error: {
-    backgroundColor: colors['c4-50'], // Light gray-blue for error
-    borderLeftColor: colors['c4-500'],
-    color: colors['c4-800'],
+    backgroundColor: vars.colors.alertErrorBackground,
+    borderLeftColor: vars.colors.alertErrorBorder,
+    color: vars.colors.alertErrorText,
   },
   info: {
-    backgroundColor: colors['c1-50'], // Light blue for info
-    borderLeftColor: colors['c1-500'],
-    color: colors['c1-800'],
+    backgroundColor: vars.colors.alertInfoBackground,
+    borderLeftColor: vars.colors.alertInfoBorder,
+    color: vars.colors.alertInfoText,
   },
 });
 
