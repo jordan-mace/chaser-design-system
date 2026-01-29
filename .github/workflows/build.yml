@@ -62,6 +62,9 @@ jobs:
         with:
           node-version: 22
 
+      - name: Install npm 11.5.1+ for OIDC support
+        run: npm install -g npm@latest
+
       - name: Install dependencies
         run: pnpm install
 
