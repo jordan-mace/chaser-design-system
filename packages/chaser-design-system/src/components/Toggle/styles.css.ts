@@ -21,11 +21,15 @@ export const toggle = styleWithLayer({
   position: 'relative',
   display: 'inline-flex',
   alignItems: 'center',
-  cursor: 'pointer',
   selectors: {
     '&:has(input:disabled)': {
       cursor: 'not-allowed',
       opacity: 0.5,
+    },
+    '> label': {
+      display: 'inline-flex',
+      alignItems: 'center',
+      cursor: 'pointer',
     },
   },
 });
@@ -43,7 +47,27 @@ export const toggleTrack = styleWithLayer({
   transition: 'background-color 0.2s ease-in-out',
   backgroundColor: vars.colors.borderDefault,
   position: 'relative',
-  display: 'inline-block',
+  display: 'inline-flex',
+  alignItems: 'center',
+  cursor: 'pointer',
+  selectors: {
+    '&:hover': {
+      backgroundColor: vars.colors.borderMuted,
+    },
+  },
+});
+
+export const toggleTrackChecked = styleWithLayer({
+  backgroundColor: vars.colors.buttonBackgroundPrimary,
+  selectors: {
+    '&:hover': {
+      backgroundColor: vars.colors.buttonBackgroundFocusedPrimary,
+    },
+  },
+});
+
+export const toggleTrackUnchecked = styleWithLayer({
+  backgroundColor: vars.colors.borderDefault,
 });
 
 export const toggleTrackChecked = styleWithLayer({
