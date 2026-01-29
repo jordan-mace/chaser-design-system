@@ -36,8 +36,8 @@ jobs:
           path: ./packages/chaser-design-system/dist
           name: dist
 
-      - name: Install Playwright Dependencies
-        run: pnpm i playwright && pnpm exec playwright install chromium --with-deps
+      - name: Install Playwright Browsers
+        uses: playwright/test-project-action@v1
 
       - name: Test
         run: pnpm run test
