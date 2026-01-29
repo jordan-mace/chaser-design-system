@@ -15,11 +15,11 @@ A modern, type-safe React component library built with [Vanilla Extract](https:/
 ## Installation
 
 ```bash
-npm install chaser-design-system
+npm install @jordan-mace/chaser-design-system
 # or
-yarn add chaser-design-system
+yarn add @jordan-mace/chaser-design-system
 # or
-pnpm add chaser-design-system
+pnpm add @jordan-mace/chaser-design-system
 ```
 
 ### Peer Dependencies
@@ -37,14 +37,14 @@ npm install @vanilla-extract/css @vanilla-extract/sprinkles clsx react react-dom
 First, import the required CSS files in your application entry point:
 
 ```typescript
-import "chaser-design-system/layers.css";
-import "chaser-design-system/cssReset.css";
+import "@jordan-mace/chaser-design-system/layers.css";
+import "@jordan-mace/chaser-design-system/cssReset.css";
 ```
 
 ### 2. Use Components
 
 ```typescript
-import { Button, Input, Form } from "chaser-design-system";
+import { Button, Input, Form } from "@jordan-mace/chaser-design-system";
 
 const App = () => {
   return (
@@ -141,7 +141,7 @@ Chaser includes a comprehensive design token system with:
 ### Accessing Theme Variables
 
 ```typescript
-import { vars } from "chaser-design-system/theme.css";
+import { vars } from "@jordan-mace/chaser-design-system/theme.css";
 
 // Use theme variables in your custom styles
 const customStyle = style({

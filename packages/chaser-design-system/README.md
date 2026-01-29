@@ -5,7 +5,7 @@ A modern, type-safe React component library built with [Vanilla Extract](https:/
 ## Installation
 
 ```bash
-npm install chaser-design-system
+npm install @jordan-mace/chaser-design-system
 ```
 
 **Peer Dependencies:**
@@ -19,9 +19,9 @@ npm install @vanilla-extract/css @vanilla-extract/sprinkles clsx react react-dom
 Import the CSS layers and reset in your app entry point:
 
 ```typescript
-import 'chaser-design-system/layers.css';
-import 'chaser-design-system/cssReset.css';
-import { Button, Input, Form } from 'chaser-design-system';
+import '@jordan-mace/chaser-design-system/layers.css';
+import '@jordan-mace/chaser-design-system/cssReset.css';
+import { Button, Input, Form } from '@jordan-mace/chaser-design-system';
 
 const App = () => {
   return (
@@ -85,7 +85,7 @@ const App = () => {
 Access theme variables for custom styling:
 
 ```typescript
-import { vars } from 'chaser-design-system/theme.css';
+import { vars } from '@jordan-mace/chaser-design-system/theme.css';
 
 const customStyle = {
   color: vars.colors.textPrimary,

@@ -65,12 +65,8 @@ jobs:
       - name: Install dependencies
         run: pnpm install
 
-      # Ensure npm 11.5.1 or later is installed
-      - name: Update npm
-        run: npm install -g npm@latest
-
       - name: Publish Package
-        working-directory: ./packages/chaser-design-system/
+        run: pnpm changeset publish
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: npx semantic-release
+          NPM_CONFIG_PROVENANCE: true
