@@ -8,3 +8,4 @@ export { Alert } from './Alert';
 export { P, Header } from './Text';
 export { Modal } from './Modal';
 export { Badge } from './Badge';
+export { Divider } from './Divider';
