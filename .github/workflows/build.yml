@@ -37,7 +37,7 @@ jobs:
           name: dist
 
       - name: Install Playwright Dependencies
-        run: pnpm exec playwright install chromium --with-deps
+        run: pnpm i playwright && pnpm exec playwright install chromium --with-deps
 
       - name: Test
         run: pnpm run test
@@ -70,7 +70,7 @@ jobs:
         run: npm install -g npm@latest
 
       - name: Publish Package
+        working-directory: ./packages/chaser-design-system/
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        working-directory: ./packages/chaser-design-system/
         run: npx semantic-release
