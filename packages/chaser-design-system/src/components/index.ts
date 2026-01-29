@@ -6,3 +6,4 @@ export { Navbar, NavbarItem } from './Navbar';
 export { Card } from './Card';
 export { Alert } from './Alert';
 export { P, Header } from './Text';
+export { Modal } from './Modal';
