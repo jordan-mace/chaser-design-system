@@ -105,6 +105,7 @@ export const toggleThumbSizes = styleVariants({
 
 export const toggleThumbChecked = styleWithLayer({
   transform: 'translateY(-50%) translateX(calc(100% - 0.75rem))',
+  backgroundColor: vars.colors.backgroundDefault,
   selectors: {
     '[data-size="small"] &': {
       transform: 'translateY(-50%) translateX(calc(100% - 0.5rem))',
@@ -117,6 +118,7 @@ export const toggleThumbChecked = styleWithLayer({
 
 export const toggleThumbUnchecked = styleWithLayer({
   transform: 'translateY(-50%) translateX(0)',
+  backgroundColor: vars.colors.backgroundDefault,
 });
 
 export const toggleFocusRing = styleWithLayer({
