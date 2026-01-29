@@ -42,42 +42,44 @@ const Toggle = ({
   };
 
   return (
-    <label htmlFor={toggleId} className={toggle} {...props}>
-      <input
-        type="checkbox"
-        id={toggleId}
-        checked={checked}
-        onChange={handleChange}
-        disabled={disabled}
-        className={toggleInput}
-        onFocus={() => setIsFocused(true)}
-        onBlur={() => setIsFocused(false)}
-        aria-checked={checked}
-        role="switch"
-      />
-      <span
-        className={clsx(
-          toggleTrack,
-          toggleSizes[size],
-          checked ? toggleTrackChecked : toggleTrackUnchecked,
-        )}
-        data-size={size}
-      >
+    <div className={toggle}>
+      <label htmlFor={toggleId} {...props}>
+        <input
+          type="checkbox"
+          id={toggleId}
+          checked={checked}
+          onChange={handleChange}
+          disabled={disabled}
+          className={toggleInput}
+          onFocus={() => setIsFocused(true)}
+          onBlur={() => setIsFocused(false)}
+          aria-checked={checked}
+          role="switch"
+        />
         <span
           className={clsx(
-            toggleThumb,
-            toggleThumbSizes[size],
-            checked ? toggleThumbChecked : toggleThumbUnchecked,
+            toggleTrack,
+            toggleSizes[size],
+            checked ? toggleTrackChecked : toggleTrackUnchecked,
           )}
+          data-size={size}
+        >
+          <span
+            className={clsx(
+              toggleThumb,
+              toggleThumbSizes[size],
+              checked ? toggleThumbChecked : toggleThumbUnchecked,
+            )}
+          />
+        </span>
+        <span
+          className={toggleFocusRing}
+          data-focused={isFocused}
+          aria-hidden="true"
         />
-        {label && <span style={{ marginLeft: '0.75rem' }}>{label}</span>}
-      </span>
-      <span
-        className={toggleFocusRing}
-        data-focused={isFocused}
-        aria-hidden="true"
-      />
-    </label>
+      </label>
+      {label && <span style={{ marginLeft: '0.75rem' }}>{label}</span>}
+    </div>
   );
 };
 
