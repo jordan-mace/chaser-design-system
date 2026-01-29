@@ -2,7 +2,7 @@ import clsx from 'clsx';
 import React from 'react';
 import { inputStyle, label } from './styles.css';
 import { text } from '../Text/styles.css';
-import { sprinkles } from '../../styles/sprinkles.css';
+import Box from '../Box';
 
 export type InputProps = React.InputHTMLAttributes<HTMLInputElement> & {
   label?: string;
@@ -11,30 +11,32 @@ export type InputProps = React.InputHTMLAttributes<HTMLInputElement> & {
 
 const Input = (props: InputProps) => {
   return (
-    <div
-      className={sprinkles({
-        display: 'flex',
-        flexDirection: { mobile: 'column', tablet: 'row' },
-        gap: 'small',
-      })}
+    <Box
+      display="flex"
+      flexDirection={{ mobile: 'column', tablet: 'row' }}
+      gap="small"
     >
       {props.label && (
-        <label
+        <Box
+          as="label"
           className={clsx(
             text,
             label,
-            sprinkles({
-              marginX: { mobile: 'auto', tablet: 'none' },
-              marginY: { mobile: 'none', tablet: 'auto' },
-            }),
           )}
+          marginX={{ mobile: 'auto', tablet: 'none' }}
+          marginY={{ mobile: 'none', tablet: 'auto' }}
           htmlFor={props.id}
         >
           {props.label}
-        </label>
+        </Box>
       )}
-      <input className={clsx(inputStyle, props.className)} {...props} />
-    </div>
+      <Box
+        as="input"
+        className={clsx(inputStyle, props.className)}
+        width={props.fullWidth ? '100%' : undefined}
+        {...props}
+      />
+    </Box>
   );
 };
 

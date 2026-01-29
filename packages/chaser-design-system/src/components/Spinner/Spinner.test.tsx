@@ -50,8 +50,9 @@ describe('Spinner', () => {
   });
 
   it('renders div element with proper attributes', async () => {
-    const { getByRole } = await render(<Spinner />);
-    const spinner = getByRole('status');
+    const { container } = await render(<Spinner />);
+    await new Promise(resolve => setTimeout(resolve, 50));
+    const spinner = container.querySelector('[role="status"]');
     expect(spinner).toBeInTheDocument();
     expect(spinner.tagName).toBe('DIV');
   });

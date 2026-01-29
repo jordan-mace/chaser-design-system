@@ -1,7 +1,7 @@
 import clsx from 'clsx';
 import { card, cardVariants } from './styles.css';
-import { sprinkles } from '../../styles/sprinkles.css';
 import React from 'react';
+import Box from '../Box';
 
 type CardProps = React.HTMLAttributes<HTMLDivElement> & {
   variant?: 'elevated' | 'outlined' | 'filled';
@@ -15,12 +15,11 @@ const Card = ({
   ...props
 }: CardProps) => {
   return (
-    <div
+    <Box
+      as="div"
+      borderRadius="large"
+      padding={padding !== 'none' ? padding : undefined}
       className={clsx(
-        sprinkles({
-          borderRadius: 'large',
-          padding: padding !== 'none' ? padding : undefined,
-        }),
         cardVariants[variant],
         card,
         props.className,
@@ -28,7 +27,7 @@ const Card = ({
       {...props}
     >
       {props.children}
-    </div>
+    </Box>
   );
 };
 

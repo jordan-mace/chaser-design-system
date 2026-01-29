@@ -10,6 +10,7 @@ import {
   tooltipArrowRight,
 } from './styles.css';
 import React, { useState } from 'react';
+import Box from '../Box';
 
 export type TooltipPosition = 'top' | 'bottom' | 'left' | 'right';
 
@@ -37,7 +38,8 @@ const Tooltip = ({
   };
 
   return (
-    <div
+    <Box
+      as="div"
       className={clsx(tooltipContainer, props.className)}
       onMouseEnter={() => setIsVisible(true)}
       onMouseLeave={() => setIsVisible(false)}
@@ -46,7 +48,8 @@ const Tooltip = ({
       {...props}
     >
       {children}
-      <div
+      <Box
+        as="div"
         className={clsx(
           tooltipContent,
           tooltipPositions[position],
@@ -56,13 +59,14 @@ const Tooltip = ({
         role="tooltip"
       >
         {showArrow && (
-          <span
+          <Box
+            as="span"
             className={clsx(tooltipArrow, arrowStyle.top, arrowStyle.bottom, arrowStyle.left, arrowStyle.right)}
           />
         )}
         {content}
-      </div>
-    </div>
+      </Box>
+    </Box>
   );
 };
 

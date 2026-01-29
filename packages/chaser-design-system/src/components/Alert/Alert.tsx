@@ -6,6 +6,7 @@ import {
   alertDismissButton,
 } from './styles.css';
 import React from 'react';
+import Box from '../Box';
 
 type AlertProps = React.HTMLAttributes<HTMLDivElement> & {
   severity?: 'success' | 'warning' | 'error' | 'info';
@@ -22,23 +23,25 @@ const Alert = ({
   ...props
 }: AlertProps) => {
   return (
-    <div
+    <Box
+      as="div"
       role="alert"
       className={clsx(alert, alertVariants[severity], props.className)}
       {...props}
     >
-      <div className={alertContent}>{children}</div>
+      <Box as="div" className={alertContent}>{children}</Box>
       {dismissible && onDismiss && (
-        <button
+        <Box
+          as="button"
           className={alertDismissButton}
           onClick={onDismiss}
           aria-label="Dismiss alert"
           type="button"
         >
           ×
-        </button>
+        </Box>
       )}
-    </div>
+    </Box>
   );
 };
 

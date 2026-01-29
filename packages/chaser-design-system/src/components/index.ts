@@ -12,3 +12,5 @@ export { Divider } from './Divider';
 export { Spinner } from './Spinner';
 export { Tooltip } from './Tooltip';
 export { Toggle } from './Toggle';
+export { default as Box } from './Box';
+export type { BoxProps } from './Box';

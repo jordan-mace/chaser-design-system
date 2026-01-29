@@ -50,14 +50,45 @@ describe('Tooltip', () => {
   });
 
   it('renders with tooltip content', async () => {
-    const { getByRole } = await render(
+    const { container } = await render(
       <Tooltip content="Tooltip text">
         <button>Hover me</button>
       </Tooltip>,
     );
-    const tooltip = getByRole('tooltip');
+    const tooltip = container.querySelector('[role="tooltip"]');
     expect(tooltip).toBeInTheDocument();
     expect(tooltip).toHaveTextContent('Tooltip text');
+  });
+
+  it('renders children correctly', async () => {
+    const { getByText } = await render(
+      <Tooltip content="Tooltip text">
+        <button>Hover me</button>
+      </Tooltip>,
+    );
+    const button = getByText('Hover me');
+    expect(button).toBeInTheDocument();
+  });
+
+  it('has proper role attribute', async () => {
+    const { container } = await render(
+      <Tooltip content="Tooltip text">
+        <button>Hover me</button>
+      </Tooltip>,
+    );
+    const tooltip = container.querySelector('[role="tooltip"]');
+    expect(tooltip).toBeInTheDocument();
+    expect(tooltip).toHaveAttribute('role', 'tooltip');
+  });
+
+  it('shows tooltip on hover', async () => {
+    const { container } = await render(
+      <Tooltip content="Tooltip text">
+        <button>Hover me</button>
+      </Tooltip>,
+    );
+    const tooltip = container.querySelector('[role="tooltip"]');
+    expect(tooltip).toHaveAttribute('data-visible', 'false');
   });
 
   it('renders children correctly', async () => {
@@ -81,12 +112,12 @@ describe('Tooltip', () => {
   });
 
   it('shows tooltip on hover', async () => {
-    const { getByRole } = await render(
+    const { container } = await render(
       <Tooltip content="Tooltip text">
         <button>Hover me</button>
       </Tooltip>,
     );
-    const tooltip = getByRole('tooltip');
+    const tooltip = container.querySelector('[role="tooltip"]');
     expect(tooltip).toHaveAttribute('data-visible', 'false');
   });
 });

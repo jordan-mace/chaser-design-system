@@ -9,6 +9,7 @@ import {
   modalFooter,
 } from './styles.css';
 import React, { useEffect, useRef } from 'react';
+import Box from '../Box';
 
 export type ModalSize = 'small' | 'medium' | 'large' | 'full';
 
@@ -69,10 +70,11 @@ const Modal = ({
   }, [isOpen, onClose]);
 
   return (
-    <dialog
+    <Box
+      as="dialog"
       ref={dialogRef}
       className={clsx(modal, modalVariants[size])}
-      onClick={(e) => {
+      onClick={(e: React.MouseEvent<HTMLDialogElement>) => {
         // Close when clicking the backdrop
         if (e.target === dialogRef.current) {
           onClose();
@@ -81,25 +83,26 @@ const Modal = ({
       {...props}
     >
       {title && (
-        <div className={modalHeader}>
-          <h2 className={modalTitle}>{title}</h2>
+        <Box as="div" className={modalHeader}>
+          <Box as="h2" className={modalTitle}>{title}</Box>
           {showCloseButton && (
-            <button
+            <Box
+              as="button"
               className={modalCloseButton}
               onClick={onClose}
               aria-label="Close modal"
               type="button"
             >
               ×
-            </button>
+            </Box>
           )}
-        </div>
+        </Box>
       )}
 
-      <div className={modalBody}>{children}</div>
+      <Box as="div" className={modalBody}>{children}</Box>
 
-      {footer && <div className={modalFooter}>{footer}</div>}
-    </dialog>
+      {footer && <Box as="div" className={modalFooter}>{footer}</Box>}
+    </Box>
   );
 };
 

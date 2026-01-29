@@ -1,6 +1,7 @@
 import clsx from 'clsx';
 import { heading, text } from './styles.css';
 import React from 'react';
+import Box from '../Box';
 
 type HeaderProps = {
   variant: 'h1' | 'h2' | 'h3';
@@ -9,10 +10,11 @@ type HeaderProps = {
 };
 
 const Header = ({ variant, label, className }: HeaderProps) => {
-  return React.createElement(variant, {
-    className: clsx(className, text, heading),
-    children: label,
-  });
+  return (
+    <Box as={variant} className={clsx(className, text, heading)}>
+      {label}
+    </Box>
+  );
 };
 
 export default Header;

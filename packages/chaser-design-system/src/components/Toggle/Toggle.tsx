@@ -13,10 +13,11 @@ import {
   toggleSizes,
 } from './styles.css';
 import React, { useState } from 'react';
+import Box from '../Box';
 
 export type ToggleSize = 'small' | 'medium' | 'large';
 
-export interface ToggleProps extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'size' | 'checked'> {
+export interface ToggleProps extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'size' | 'checked' | 'onChange'> {
   checked?: boolean;
   onChange?: (checked: boolean) => void;
   size?: ToggleSize;
@@ -37,14 +38,15 @@ const Toggle = ({
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (!disabled && onChange) {
-      onChange(e.target.checked);
+      onChange((e.target as HTMLInputElement).checked);
     }
   };
 
   return (
-    <div className={toggle}>
-      <label htmlFor={toggleId} {...props}>
-        <input
+    <Box as="div" className={toggle}>
+      <Box as="label" htmlFor={toggleId}>
+        <Box
+          as="input"
           type="checkbox"
           id={toggleId}
           checked={checked}
@@ -55,8 +57,10 @@ const Toggle = ({
           onBlur={() => setIsFocused(false)}
           aria-checked={checked}
           role="switch"
+          {...props}
         />
-        <span
+        <Box
+          as="span"
           className={clsx(
             toggleTrack,
             toggleSizes[size],
@@ -64,22 +68,24 @@ const Toggle = ({
           )}
           data-size={size}
         >
-          <span
+          <Box
+            as="span"
             className={clsx(
               toggleThumb,
               toggleThumbSizes[size],
               checked ? toggleThumbChecked : toggleThumbUnchecked,
             )}
           />
-        </span>
-        <span
+        </Box>
+        <Box
+          as="span"
           className={toggleFocusRing}
           data-focused={isFocused}
           aria-hidden="true"
         />
-      </label>
-      {label && <span style={{ marginLeft: '0.75rem' }}>{label}</span>}
-    </div>
+      </Box>
+      {label && <Box as="span" marginLeft="small">{label}</Box>}
+    </Box>
   );
 };
 

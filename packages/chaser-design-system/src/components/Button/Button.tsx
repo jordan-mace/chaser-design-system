@@ -1,7 +1,7 @@
 import clsx from 'clsx';
 import { button, buttonVariants } from './styles.css';
-import { sprinkles } from '../../styles/sprinkles.css';
 import React from 'react';
+import Box from '../Box';
 
 type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
   variant: 'primary' | 'secondary';
@@ -12,18 +12,19 @@ type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
 
 const Button = (props: ButtonProps) => {
   return (
-    <button
+    <Box
+      as="button"
+      borderRadius="large"
+      width={props.fullWidth ? '100%' : undefined}
       className={clsx(
-        sprinkles({ borderRadius: 'large' }),
         buttonVariants[props.variant],
         button,
-        props.fullWidth && sprinkles({ width: '100%' }),
         props.className,
       )}
       {...props}
     >
       {props.label ? props.label : props.children}
-    </button>
+    </Box>
   );
 };
 

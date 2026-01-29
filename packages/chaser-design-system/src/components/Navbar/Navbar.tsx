@@ -1,7 +1,7 @@
 import clsx from 'clsx';
 import React from 'react';
-import { sprinkles } from '../../styles/sprinkles.css';
 import { navbarStyle } from './styles.css';
+import Box from '../Box';
 
 type NavbarProps = React.HTMLAttributes<HTMLElement> & {
   children?: React.ReactNode;
@@ -9,14 +9,13 @@ type NavbarProps = React.HTMLAttributes<HTMLElement> & {
 
 const Navbar = (props: NavbarProps) => {
   return (
-    <nav
+    <Box
+      as="nav"
+      width="100%"
+      display="flex"
+      flexDirection="row"
+      gap="medium"
       className={clsx(
-        sprinkles({
-          width: '100%',
-          display: 'flex',
-          flexDirection: 'row',
-          gap: 'medium',
-        }),
         navbarStyle,
         props.className,
       )}

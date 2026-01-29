@@ -5,6 +5,7 @@ import {
   spinnerSizes,
 } from './styles.css';
 import React from 'react';
+import Box from '../Box';
 
 export type SpinnerColor = 'primary' | 'secondary' | 'success' | 'warning' | 'error' | 'info';
 export type SpinnerSize = 'small' | 'medium' | 'large';
@@ -22,7 +23,8 @@ const Spinner = ({
   ...props
 }: SpinnerProps) => {
   return (
-    <div
+    <Box
+      as="div"
       className={clsx(
         spinner,
         spinnerColors[color],

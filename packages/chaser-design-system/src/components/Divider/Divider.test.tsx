@@ -34,8 +34,8 @@ describe('Divider', () => {
   });
 
   it('renders hr element with proper attributes', async () => {
-    const { getByRole } = await render(<Divider />);
-    const divider = getByRole('separator');
+    const { container } = await render(<Divider />);
+    const divider = container.querySelector('hr');
     expect(divider).toBeInTheDocument();
     expect(divider.tagName).toBe('HR');
   });

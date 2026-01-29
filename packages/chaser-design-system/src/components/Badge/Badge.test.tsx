@@ -60,15 +60,15 @@ describe('Badge', () => {
   });
 
   it('renders span element with proper attributes', async () => {
-    const { getByText } = await render(<Badge>Test Badge</Badge>);
-    const badge = getByText('Test Badge');
+    const { container } = await render(<Badge>Test Badge</Badge>);
+    const badge = container.querySelector('span');
     expect(badge).toBeInTheDocument();
-    expect(badge.tagName).toBe('SPAN');
+    expect(badge?.tagName).toBe('SPAN');
+    expect(badge).toHaveTextContent('Test Badge');
   });
 
   it('does not render children when dot is true', async () => {
-    const { queryByText } = await render(<Badge dot>Hidden Text</Badge>);
-    const text = queryByText('Hidden Text');
-    expect(text).not.toBeInTheDocument();
+    const { container } = await render(<Badge dot>Hidden Text</Badge>);
+    expect(container).toHaveTextContent('');
   });
 });

@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { render } from 'vitest-browser-react';
+import { render, fireEvent } from 'vitest-browser-react';
 import Modal from './Modal';
 import React from 'react';
 
@@ -105,7 +105,7 @@ describe('Modal', () => {
       </Modal>,
     );
     const dialog = getByRole('dialog');
-    await dialog.click();
+    fireEvent.click(dialog);
     expect(closed).toBe(true);
   });
 
@@ -140,9 +140,9 @@ describe('Modal', () => {
         <p>Modal content</p>
       </Modal>,
     );
-    const title = getByText('My Modal Title');
-    expect(title).toBeInTheDocument();
-    expect(title.tagName).toBe('H2');
+    const titleText = getByText('My Modal Title');
+    expect(titleText).toBeInTheDocument();
+    expect(titleText.parentElement?.tagName).toBe('H2');
   });
 
   it('displays footer content', async () => {

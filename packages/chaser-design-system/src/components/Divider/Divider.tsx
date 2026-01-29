@@ -6,6 +6,7 @@ import {
   dividerVerticalSizes,
 } from './styles.css';
 import React from 'react';
+import Box from '../Box';
 
 export type DividerOrientation = 'horizontal' | 'vertical';
 export type DividerSize = 'small' | 'medium' | 'large';
@@ -21,13 +22,16 @@ const Divider = ({
   ...props
 }: DividerProps) => {
   return (
-    <hr
+    <Box
+      as="hr"
       className={clsx(
         divider,
         dividerOrientations[orientation],
         orientation === 'vertical' ? dividerVerticalSizes[size] : dividerSizes[size],
         props.className,
       )}
+      role="separator"
+      aria-orientation={orientation}
       {...props}
     />
   );

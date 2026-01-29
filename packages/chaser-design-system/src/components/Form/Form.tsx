@@ -1,7 +1,7 @@
 import clsx from 'clsx';
 import React from 'react';
-import { sprinkles } from '../../styles/sprinkles.css';
 import { formStyle } from './styles.css';
+import Box from '../Box';
 
 type FormProps = React.FormHTMLAttributes<HTMLFormElement> & {
   className?: string;
@@ -10,16 +10,18 @@ type FormProps = React.FormHTMLAttributes<HTMLFormElement> & {
 
 const Form = (props: FormProps) => {
   return (
-    <form
+    <Box
+      as="form"
+      gap="medium"
+      paddingX="large"
       className={clsx(
         formStyle,
-        sprinkles({ gap: 'medium', paddingX: 'large' }),
         props.className,
       )}
       {...props}
     >
       {props.children}
-    </form>
+    </Box>
   );
 };
 

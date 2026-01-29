@@ -7,6 +7,7 @@ import {
   badgeDotSizes,
 } from './styles.css';
 import React from 'react';
+import Box from '../Box';
 
 export type BadgeVariant = 'default' | 'success' | 'warning' | 'error' | 'info';
 export type BadgeSize = 'small' | 'medium' | 'large';
@@ -26,7 +27,8 @@ const Badge = ({
   ...props
 }: BadgeProps) => {
   return (
-    <span
+    <Box
+      as="span"
       className={clsx(
         badge,
         badgeVariants[variant],
@@ -37,7 +39,7 @@ const Badge = ({
       {...props}
     >
       {dot ? null : children}
-    </span>
+    </Box>
   );
 };
 
