@@ -11,8 +11,14 @@ const config: StorybookConfig = {
     '@storybook/addon-styling-webpack',
   ],
   framework: 'storybook-react-rsbuild',
+  docs: {
+    autodocs: 'tag',
+  },
   async rsbuildFinal(config) {
     return mergeRsbuildConfig(config, {
+      output: {
+        assetPrefix: process.env.STORYBOOK_BASE_URL || '/',
+      },
       tools: {
         rspack: (config, { addRules, appendPlugins, rspack }) => {
           appendPlugins([new VanillaExtractPlugin()]);
