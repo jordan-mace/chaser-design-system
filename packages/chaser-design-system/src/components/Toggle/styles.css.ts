@@ -17,6 +17,12 @@ export const toggleSizes = styleVariants({
   },
 });
 
+export const toggleLabel = styleWithLayer({
+  display: 'inline-flex',
+  alignItems: 'center',
+  cursor: 'pointer',
+});
+
 export const toggle = styleWithLayer({
   position: 'relative',
   display: 'inline-flex',
@@ -25,11 +31,6 @@ export const toggle = styleWithLayer({
     '&:has(input:disabled)': {
       cursor: 'not-allowed',
       opacity: 0.5,
-    },
-    '> label': {
-      display: 'inline-flex',
-      alignItems: 'center',
-      cursor: 'pointer',
     },
   },
 });

@@ -1,6 +1,7 @@
 import clsx from 'clsx';
 import {
   toggle,
+  toggleLabel,
   toggleInput,
   toggleTrack,
   toggleTrackChecked,
@@ -44,7 +45,7 @@ const Toggle = ({
 
   return (
     <Box as="div" className={toggle}>
-      <Box as="label" htmlFor={toggleId}>
+      <Box as="label" htmlFor={toggleId} className={toggleLabel}>
         <Box
           as="input"
           type="checkbox"
