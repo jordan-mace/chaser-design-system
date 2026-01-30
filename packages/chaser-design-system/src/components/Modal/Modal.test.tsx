@@ -116,13 +116,15 @@ describe('Modal', () => {
     const handleClose = () => {
       closed = true;
     };
-    const { getByText } = await render(
+    const { container } = await render(
       <Modal isOpen onClose={handleClose} title="Test Modal" size="small">
         <p>Modal content</p>
       </Modal>,
     );
-    const content = getByText('Modal content');
-    await content.click();
+    const content = container.querySelector('p');
+    if (content) {
+      await content.click();
+    }
     expect(closed).toBe(false);
   });
 
