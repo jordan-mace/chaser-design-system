@@ -135,7 +135,7 @@ export const FlexContainer: Story = {
 export const ResponsivePadding: Story = {
   args: {
     children: 'Responsive padding example',
-    padding: { mobile: 'small', tablet: 'medium', desktop: 'large' },
+    padding: ['small', 'medium', 'large'],
     background: 'c3-100',
   },
 };

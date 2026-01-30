@@ -6,7 +6,6 @@ import Box from '../Box';
 type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
   variant: 'primary' | 'secondary';
   children?: React.ReactNode;
-  label: string;
   fullWidth?: boolean;
 };
 
@@ -23,7 +22,7 @@ const Button = (props: ButtonProps) => {
       )}
       {...props}
     >
-      {props.label ? props.label : props.children}
+      {props.children}
     </Box>
   );
 };

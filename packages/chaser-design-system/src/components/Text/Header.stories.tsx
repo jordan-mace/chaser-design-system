@@ -19,20 +19,26 @@ type Story = StoryObj<typeof meta>;
 export const H1: Story = {
   args: {
     variant: 'h1',
-    label: 'Welcome back, User!',
   },
+  render: (args) => (
+    <Header {...args}>Welcome back, User!</Header>
+  ),
 };
 
 export const H2: Story = {
   args: {
     variant: 'h2',
-    label: 'Welcome back, User!',
   },
+  render: (args) => (
+    <Header {...args}>Welcome back, User!</Header>
+  ),
 };
 
 export const H3: Story = {
   args: {
     variant: 'h3',
-    label: 'Welcome back, User!',
   },
+  render: (args) => (
+    <Header {...args}>Welcome back, User!</Header>
+  ),
 };

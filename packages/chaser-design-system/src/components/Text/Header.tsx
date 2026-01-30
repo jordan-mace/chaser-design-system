@@ -6,13 +6,13 @@ import Box from '../Box';
 type HeaderProps = {
   variant: 'h1' | 'h2' | 'h3';
   className?: string;
-  label?: string;
+  children?: React.ReactNode;
 };
 
-const Header = ({ variant, label, className }: HeaderProps) => {
+const Header = ({ variant, children, className }: HeaderProps) => {
   return (
     <Box as={variant} className={clsx(className, text, heading)}>
-      {label}
+      {children}
     </Box>
   );
 };

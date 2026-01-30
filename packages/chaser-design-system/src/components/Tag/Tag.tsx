@@ -30,7 +30,7 @@ const Tag = ({
         <Box
           as="span"
           onClick={onRemove}
-          className={removable}
+          className={removeButton}
           role="button"
           tabIndex={0}
           aria-label="Remove tag"
@@ -52,18 +52,18 @@ type TagGroupProps = {
   className?: string;
 };
 
-  const TagGroup = ({ children, className }: TagGroupProps) => {
-    return (
-      <Box
-        className={clsx(tagGroup, className)}
-        display="flex"
-        gap="small"
-        style={{ flexWrap: 'wrap' }}
-      >
-        {children}
-      </Box>
-    );
-  };
+const TagGroup = ({ children, className }: TagGroupProps) => {
+  return (
+    <Box
+      className={clsx(tagGroup, className)}
+      display="flex"
+      gap="small"
+      style={{ flexWrap: 'wrap' }}
+    >
+      {children}
+    </Box>
+  );
+};
 
 const TagComponent = Object.assign(Tag, {
   Group: TagGroup,

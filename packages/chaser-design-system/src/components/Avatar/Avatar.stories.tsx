@@ -16,35 +16,35 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
-    initials: 'JD',
+    children: 'JD',
   },
 };
 
 export const Small: Story = {
   args: {
     size: 'small',
-    initials: 'AB',
+    children: 'AB',
   },
 };
 
 export const Medium: Story = {
   args: {
     size: 'medium',
-    initials: 'CD',
+    children: 'CD',
   },
 };
 
 export const Large: Story = {
   args: {
     size: 'large',
-    initials: 'EF',
+    children: 'EF',
   },
 };
 
 export const XLarge: Story = {
   args: {
     size: 'xlarge',
-    initials: 'GH',
+    children: 'GH',
   },
 };
 
@@ -73,10 +73,10 @@ export const WithChildren: Story = {
 export const AvatarGroup: Story = {
   render: () => (
     <div style={{ display: 'flex', gap: '-8px', alignItems: 'center' }}>
-      <Avatar size="small" initials="A" src="https://i.pravatar.cc/150?img=1" />
-      <Avatar size="small" initials="B" src="https://i.pravatar.cc/150?img=2" />
-      <Avatar size="small" initials="C" src="https://i.pravatar.cc/150?img=3" />
-      <Avatar size="small" initials="+3" />
+      <Avatar size="small" children="A" src="https://i.pravatar.cc/150?img=1" />
+      <Avatar size="small" children="B" src="https://i.pravatar.cc/150?img=2" />
+      <Avatar size="small" children="C" src="https://i.pravatar.cc/150?img=3" />
+      <Avatar size="small" children="+3" />
     </div>
   ),
 };

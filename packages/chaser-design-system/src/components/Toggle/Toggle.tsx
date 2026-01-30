@@ -13,7 +13,7 @@ import {
   toggleFocusRing,
   toggleSizes,
 } from './styles.css';
-import React, { useState } from 'react';
+import React, { useState, useId } from 'react';
 import Box from '../Box';
 
 export type ToggleSize = 'small' | 'medium' | 'large';
@@ -35,7 +35,8 @@ const Toggle = ({
   ...props
 }: ToggleProps) => {
   const [isFocused, setIsFocused] = useState(false);
-  const toggleId = id || `toggle-${Math.random().toString(36).substr(2, 9)}`;
+  const generatedId = useId();
+  const toggleId = id || `toggle-${generatedId}`;
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (!disabled && onChange) {

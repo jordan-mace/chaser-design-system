@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import React, { forwardRef } from 'react';
+import React, { forwardRef, useEffect, useRef } from 'react';
 import { checkboxContainer, checkboxInput, checkboxLabel } from './styles.css';
 import Box from '../Box';
 
@@ -13,6 +13,22 @@ type CheckboxProps = Omit<
 
 const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
   ({ label, className, indeterminate, ...props }, ref) => {
+    const inputRef = useRef<HTMLInputElement>(null);
+    const combinedRef = (node: HTMLInputElement) => {
+      if (typeof ref === 'function') {
+        ref(node);
+      } else if (ref) {
+        ref.current = node;
+      }
+      inputRef.current = node;
+    };
+
+    useEffect(() => {
+      if (inputRef.current) {
+        inputRef.current.indeterminate = !!indeterminate;
+      }
+    }, [indeterminate]);
+
     return (
       <Box
         as="label"
@@ -26,7 +42,7 @@ const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
         <Box
           as="input"
           type="checkbox"
-          ref={ref}
+          ref={combinedRef}
           className={checkboxInput}
           style={{ width: '18px', height: '18px' }}
           {...props}

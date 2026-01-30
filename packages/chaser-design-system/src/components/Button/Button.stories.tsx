@@ -44,13 +44,17 @@ type Story = StoryObj<typeof meta>;
 export const Primary: Story = {
   args: {
     variant: 'primary',
-    label: 'Button',
   },
+  render: (args) => (
+    <Button {...args}>Button</Button>
+  ),
 };
 
 export const Secondary: Story = {
   args: {
     variant: 'secondary',
-    label: 'Button',
   },
+  render: (args) => (
+    <Button {...args}>Button</Button>
+  ),
 };

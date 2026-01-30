@@ -1,7 +1,6 @@
 import clsx from 'clsx';
 import React, { createContext, useContext, useState, useCallback } from 'react';
 import {
-  accordion,
   accordionItem,
   accordionHeader,
   accordionContent,
@@ -13,9 +12,15 @@ import Box from '../Box';
 
 type AccordionContextType = {
   allowMultiple?: boolean;
+  expandedItems: Set<string>;
+  toggleItem: (value: string) => void;
 };
 
-const AccordionContext = createContext<AccordionContextType>({});
+const AccordionContext = createContext<AccordionContextType>({
+  allowMultiple: false,
+  expandedItems: new Set(),
+  toggleItem: () => {},
+});
 
 type AccordionProps = {
   children: React.ReactNode;
@@ -28,8 +33,26 @@ const Accordion = ({
   allowMultiple = false,
   className,
 }: AccordionProps) => {
+  const [expandedItems, setExpandedItems] = useState<Set<string>>(new Set());
+
+  const toggleItem = (value: string) => {
+    setExpandedItems((prev) => {
+      const newSet = new Set(prev);
+      if (newSet.has(value)) {
+        newSet.delete(value);
+      } else {
+        if (allowMultiple) {
+          newSet.add(value);
+        } else {
+          return new Set([value]);
+        }
+      }
+      return newSet;
+    });
+  };
+
   return (
-    <AccordionContext.Provider value={{ allowMultiple }}>
+    <AccordionContext.Provider value={{ allowMultiple, expandedItems, toggleItem }}>
       <Box
         className={clsx(accordionGroup, className)}
         width="100%"
@@ -44,7 +67,6 @@ type AccordionItemProps = {
   value: string;
   title: string;
   children: React.ReactNode;
-  defaultExpanded?: boolean;
   className?: string;
 };
 
@@ -52,15 +74,14 @@ const AccordionItem = ({
   value,
   title,
   children,
-  defaultExpanded = false,
   className,
 }: AccordionItemProps) => {
-  const { allowMultiple } = useContext(AccordionContext);
-  const [isExpanded, setIsExpanded] = useState(defaultExpanded);
+  const { expandedItems, toggleItem } = useContext(AccordionContext);
+  const isExpanded = expandedItems.has(value);
 
   const toggleExpanded = useCallback(() => {
-    setIsExpanded(!isExpanded);
-  }, [isExpanded]);
+    toggleItem(value);
+  }, [value, toggleItem]);
 
   return (
     <Box

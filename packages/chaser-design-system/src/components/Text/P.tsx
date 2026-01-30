@@ -3,7 +3,12 @@ import { text } from './styles.css';
 import React from 'react';
 import Box from '../Box';
 
-const P = (props: { children: React.ReactNode; className?: string }) => {
+type PProps = React.HTMLAttributes<HTMLParagraphElement> & {
+  children: React.ReactNode;
+  className?: string;
+};
+
+const P = (props: PProps) => {
   return (
     <Box as="p" className={clsx(props.className, text)}>
       {props.children}

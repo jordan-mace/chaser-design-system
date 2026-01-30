@@ -53,7 +53,6 @@ const Tooltip = ({
         className={clsx(
           tooltipContent,
           tooltipPositions[position],
-          isVisible && { 'data-visible': 'true' as const },
         )}
         data-visible={isVisible}
         role="tooltip"
