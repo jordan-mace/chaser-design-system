@@ -11,7 +11,7 @@ describe('Box', () => {
   });
 
   it('renders with different elements via as prop', async () => {
-    let { container, rerender } = await render(<Box as="span" data-testid="box">Span content</Box>);
+    const { container, rerender } = await render(<Box as="span" data-testid="box">Span content</Box>);
     expect(container.querySelector('[data-testid="box"]')?.tagName).toBe('SPAN');
 
     await rerender(<Box as="section" data-testid="box">Section content</Box>);

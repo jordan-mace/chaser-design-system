@@ -6,10 +6,11 @@ import Box from '../Box';
 type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
   variant: 'primary' | 'secondary';
   children?: React.ReactNode;
+  label?: string;
   fullWidth?: boolean;
 };
 
-const Button = (props: ButtonProps) => {
+const Button = ({ label, ...props }: ButtonProps) => {
   return (
     <Box
       as="button"
@@ -22,7 +23,7 @@ const Button = (props: ButtonProps) => {
       )}
       {...props}
     >
-      {props.children}
+      {props.children || label}
     </Box>
   );
 };

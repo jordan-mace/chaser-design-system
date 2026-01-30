@@ -53,7 +53,7 @@ describe('Toggle', () => {
   });
 
   it('does not change when disabled', async () => {
-    let checked = false;
+    const checked = false;
     const handleChange = () => {};
     const { container } = await render(<Toggle onChange={handleChange} disabled />);
     const label = container.querySelector('label');

@@ -84,7 +84,7 @@ describe('Modal', () => {
     const handleClose = () => {
       closed = true;
     };
-    const { getByLabelText } = await render(
+    const { getByLabelText, unmount } = await render(
       <Modal isOpen onClose={handleClose} title="Test Modal" size="small">
         <p>Modal content</p>
       </Modal>,
@@ -92,6 +92,7 @@ describe('Modal', () => {
     const closeButton = getByLabelText('Close modal');
     await closeButton.click();
     expect(closed).toBe(true);
+    await unmount();
   });
 
   it('handles backdrop click to close', async () => {
