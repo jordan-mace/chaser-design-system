@@ -41,6 +41,109 @@ import "@jordan-mace/chaser-design-system/layers.css";
 import "@jordan-mace/chaser-design-system/cssReset.css";
 ```
 
+### 2. Wrap App with ToastProvider
+
+Wrap your application with ToastProvider to enable toast notifications:
+
+```typescript
+import { ToastProvider } from "@jordan-mace/chaser-design-system";
+
+function App() {
+  return (
+    <ToastProvider>
+      {/* Your app components */}
+    </ToastProvider>
+  );
+}
+```
+
+### 3. Use Toast Hook in Components
+
+Import and use the useToast hook to trigger toasts:
+
+```typescript
+import { useToast } from "@jordan-mace/chaser-design-system";
+
+const MyComponent = () => {
+  const { toast, success, error, warning, info, dismiss, dismissAll } = useToast();
+  
+  return (
+    <div>
+      <button onClick={() => toast.success('Operation completed!')}>
+        Show Success Toast
+      </button>
+      <button onClick={() => toast.error('Something went wrong!')}>
+        Show Error Toast
+      </button>
+      <button onClick={() => toast.warning('Session expiring soon!')}>
+        Show Warning Toast
+      </button>
+      <button onClick={() => info('You have new notifications!')}>
+        Show Info Toast
+      </button>
+      <button onClick={dismiss}>
+        Dismiss All
+      </button>
+    </div>
+  );
+};
+```
+
+## Toast Provider Props
+
+```typescript
+interface ToastProviderProps {
+  children: React.ReactNode;
+  position?: 'top-left' | 'top-center' | 'top-right' | 'bottom-left' | 'bottom-center' | 'bottom-right'; // default: 'top-right'
+  maxVisible?: number;              // Maximum toasts visible at once (default: 5)
+  stacking?: 'stack' | 'replace';    // 'stack' = accumulate, 'replace' = replace previous (default: 'stack')
+}
+```
+
+## Toast Hook API
+
+```typescript
+const { 
+  toast,      // (message: string, options?: ToastOptions) => string - returns toast ID
+  success,   // (message: string, options?: ToastOptions) => string
+  error,     // (message: string, options?: ToastOptions) => string
+  warning,   // (message: string, options?: ToastOptions) => string
+  info,      // (message: string, options?: ToastOptions) => string
+  dismiss,    // (id: string) => void - dismiss toast by ID
+  dismissAll  // () => void - dismiss all toasts
+} = useToast();
+```
+
+## Toast Options
+
+```typescript
+interface ToastOptions {
+  duration?: number;      // Auto-dismiss duration in ms (default: 5000)
+  closable?: boolean;     // Show close button (default: true)
+  position?: ToastPosition; // Override default position
+  onClose?: () => void;    // Callback when toast closes
+}
+```
+
+### Peer Dependencies
+
+Make sure you have the following peer dependencies installed:
+
+```bash
+npm install @vanilla-extract/css @vanilla-extract/sprinkles clsx react react-dom
+```
+
+## Quick Start
+
+### 1. Import CSS Layers and Reset
+
+First, import the required CSS files in your application entry point:
+
+```typescript
+import "@jordan-mace/chaser-design-system/layers.css";
+import "@jordan-mace/chaser-design-system/cssReset.css";
+```
+
 ### 2. Use Components
 
 ```typescript
