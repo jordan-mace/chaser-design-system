@@ -68,7 +68,7 @@ const AccordionItem = ({
       className={clsx(accordionItem, className)}
       width="100%"
       marginBottom="small"
-      border="border"
+      border="small"
       borderRadius="large"
       overflow="hidden"
     >
@@ -80,12 +80,11 @@ const AccordionItem = ({
         alignItems="center"
         justifyContent="space-between"
         padding="small"
-        backgroundColor="backgroundMuted"
         cursor="pointer"
-        userSelect="none"
+        style={{ userSelect: 'none' }}
         fontSize="14px"
         fontWeight="500"
-        color="textPrimary"
+        color="c5-700"
         aria-expanded={isExpanded}
         aria-controls={`accordion-content-${value}`}
       >
@@ -110,8 +109,7 @@ const AccordionItem = ({
         )}
         padding="small"
         fontSize="14px"
-        color="textPrimary"
-        backgroundColor="backgroundDefault"
+        color="c5-700"
         role="region"
       >
         {children}

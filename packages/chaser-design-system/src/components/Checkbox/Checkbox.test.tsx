@@ -25,11 +25,11 @@ describe('Checkbox', () => {
   });
 
   it('renders as checked after click', async () => {
-    const { getByRole } = await render(<Checkbox />);
-    const checkbox = getByRole('checkbox');
-    await checkbox.click();
+    const { container } = await render(<Checkbox />);
+    const checkbox = container.querySelector('input[type="checkbox"]');
+    await checkbox?.click();
     // After clicking, checkbox should be checked
-    expect(checkbox.element().getAttribute('checked')).toBe('true');
+    expect(checkbox?.checked).toBe(true);
   });
 
   it('is accessible with proper role', async () => {

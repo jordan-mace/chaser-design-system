@@ -24,7 +24,7 @@ const Avatar = ({
 
   if (src) {
     return (
-      <Box className={clsx(avatarWrapper, className)} display="inline-flex">
+      <Box className={clsx(avatarWrapper, className)} display="inline">
         <Box
           as="img"
           src={src}

@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { render, fireEvent } from 'vitest-browser-react';
+import { render } from 'vitest-browser-react';
 import Toggle from './Toggle';
 import React from 'react';
 
@@ -44,18 +44,22 @@ describe('Toggle', () => {
     const handleChange = (newChecked: boolean) => {
       checked = newChecked;
     };
-    const { getByRole } = await render(<Toggle onChange={handleChange} />);
-    const input = getByRole('switch');
-    await fireEvent.click(input);
+    const { container } = await render(<Toggle onChange={handleChange} />);
+    const label = container.querySelector('label');
+    if (label) {
+      await label.click();
+    }
     expect(checked).toBe(true);
   });
 
   it('does not change when disabled', async () => {
     let checked = false;
     const handleChange = () => {};
-    const { getByRole } = await render(<Toggle onChange={handleChange} disabled />);
-    const input = getByRole('switch');
-    await fireEvent.click(input);
+    const { container } = await render(<Toggle onChange={handleChange} disabled />);
+    const label = container.querySelector('label');
+    if (label) {
+      await label.click();
+    }
     expect(checked).toBe(false);
   });
 

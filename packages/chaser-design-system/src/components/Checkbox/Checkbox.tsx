@@ -21,15 +21,14 @@ const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
         alignItems="center"
         gap="small"
         cursor="pointer"
-        userSelect="none"
+        style={{ userSelect: 'none' }}
       >
         <Box
           as="input"
           type="checkbox"
           ref={ref}
           className={checkboxInput}
-          width="18px"
-          height="18px"
+          style={{ width: '18px', height: '18px' }}
           {...props}
         />
         {label && <Box as="span" className={checkboxLabel}>{label}</Box>}

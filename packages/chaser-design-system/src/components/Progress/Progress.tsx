@@ -28,39 +28,39 @@ const Progress = ({
   const percentage = Math.min(Math.max((value / max) * 100, 0), 100);
   
   return (
-    <Box className={clsx(progress, className)} width="100%">
-      {(label || showPercentage) && (
-        <Box
-          className={progressLabel}
-          display="flex"
-          justifyContent="space-between"
-          fontSize="12px"
-          fontWeight="500"
-          color="textSecondary"
-          marginBottom="small"
-          fontFamily="body"
-        >
-          {label && <Box as="span">{label}</Box>}
-          {showPercentage && <Box as="span">{percentage}%</Box>}
-        </Box>
-      )}
-      <Box
-        as="div"
-        className={progressBar[variant]}
-        role="progressbar"
-        aria-valuenow={value}
-        aria-valuemin={0}
-        aria-valuemax={max}
-      >
+      <Box className={clsx(progress, className)} width="100%">
+        {(label || showPercentage) && (
+          <Box
+            className={progressLabel}
+            display="flex"
+            justifyContent="space-between"
+            fontSize="12px"
+            fontWeight="500"
+            color="c5-600"
+            marginBottom="small"
+            fontFamily="body"
+          >
+            {label && <Box as="span">{label}</Box>}
+            {showPercentage && <Box as="span">{percentage}%</Box>}
+          </Box>
+        )}
         <Box
           as="div"
-          className={progressFill[variant]}
-          style={{ width: `${percentage}%` }}
-          role="presentation"
-        />
+          className={progressBar[variant]}
+          role="progressbar"
+          aria-valuenow={value}
+          aria-valuemin={0}
+          aria-valuemax={max}
+        >
+          <Box
+            as="div"
+            className={progressFill[variant]}
+            style={{ width: `${percentage}%` }}
+            role="presentation"
+          />
+        </Box>
       </Box>
-    </Box>
-  );
+    );
 };
 
 export default Progress;

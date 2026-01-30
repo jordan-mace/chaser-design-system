@@ -27,7 +27,7 @@ const Select = forwardRef<HTMLSelectElement, SelectProps>(
             display="block"
             fontSize="14px"
             fontWeight="500"
-            color="textPrimary"
+            color="c5-700"
             marginBottom="small"
           >
             {label}

@@ -45,7 +45,7 @@ const Radio = forwardRef<HTMLInputElement, RadioProps>(
         alignItems="center"
         gap="small"
         cursor="pointer"
-        userSelect="none"
+        style={{ userSelect: 'none' }}
       >
         <Box
           as="input"

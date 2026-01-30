@@ -42,9 +42,9 @@ const Breadcrumb = ({
         className={breadcrumbList}
         display="flex"
         alignItems="center"
-        listStyle="none"
-        margin={0}
-        padding={0}
+        style={{ listStyle: 'none' }}
+        margin="none"
+        padding="none"
         gap="small"
       >
         {items.map((item, index) => (
@@ -60,9 +60,9 @@ const Breadcrumb = ({
                 as="a"
                 href={item.href}
                 className={breadcrumbLink}
-                display="inline-flex"
+                display="inline"
                 alignItems="center"
-                color="textSecondary"
+                color="c5-600"
                 fontSize="14px"
                 textDecoration="none"
               >
@@ -72,9 +72,9 @@ const Breadcrumb = ({
               <Box
                 as="span"
                 className={breadcrumbCurrent}
-                display="inline-flex"
+                display="inline"
                 alignItems="center"
-                color="textPrimary"
+                color="c5-700"
                 fontSize="14px"
                 fontWeight="500"
               >
@@ -85,9 +85,9 @@ const Breadcrumb = ({
               <Box
                 as="span"
                 className={breadcrumbSeparator}
-                color="textDisabled"
+                color="c5-500"
                 fontSize="12px"
-                userSelect="none"
+                style={{ userSelect: 'none' }}
               >
                 {separator}
               </Box>

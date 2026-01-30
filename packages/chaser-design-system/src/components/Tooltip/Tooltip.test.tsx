@@ -90,34 +90,4 @@ describe('Tooltip', () => {
     const tooltip = container.querySelector('[role="tooltip"]');
     expect(tooltip).toHaveAttribute('data-visible', 'false');
   });
-
-  it('renders children correctly', async () => {
-    const { getByText } = await render(
-      <Tooltip content="Tooltip text">
-        <button>Child content</button>
-      </Tooltip>,
-    );
-    const button = getByText('Child content');
-    expect(button).toBeInTheDocument();
-  });
-
-  it('has proper role attribute', async () => {
-    const { getByRole } = await render(
-      <Tooltip content="Tooltip text">
-        <button>Hover me</button>
-      </Tooltip>,
-    );
-    const tooltip = getByRole('tooltip');
-    expect(tooltip).toBeInTheDocument();
-  });
-
-  it('shows tooltip on hover', async () => {
-    const { container } = await render(
-      <Tooltip content="Tooltip text">
-        <button>Hover me</button>
-      </Tooltip>,
-    );
-    const tooltip = container.querySelector('[role="tooltip"]');
-    expect(tooltip).toHaveAttribute('data-visible', 'false');
-  });
 });

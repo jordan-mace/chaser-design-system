@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { render, fireEvent } from 'vitest-browser-react';
+import { render } from 'vitest-browser-react';
 import Modal from './Modal';
 import React from 'react';
 
@@ -99,13 +99,15 @@ describe('Modal', () => {
     const handleClose = () => {
       closed = true;
     };
-    const { getByRole } = await render(
+    const { container } = await render(
       <Modal isOpen onClose={handleClose} title="Test Modal" size="small">
         <p>Modal content</p>
       </Modal>,
     );
-    const dialog = getByRole('dialog');
-    fireEvent.click(dialog);
+    const dialog = container.querySelector('dialog');
+    if (dialog) {
+      await dialog.click();
+    }
     expect(closed).toBe(true);
   });
 
@@ -135,14 +137,14 @@ describe('Modal', () => {
   });
 
   it('displays title correctly', async () => {
-    const { getByText } = await render(
+    const { container } = await render(
       <Modal isOpen onClose={() => {}} title="My Modal Title" size="small">
         <p>Modal content</p>
       </Modal>,
     );
-    const titleText = getByText('My Modal Title');
-    expect(titleText).toBeInTheDocument();
-    expect(titleText.parentElement?.tagName).toBe('H2');
+    const titleElement = container.querySelector('h2');
+    expect(titleElement).toBeInTheDocument();
+    expect(titleElement).toHaveTextContent('My Modal Title');
   });
 
   it('displays footer content', async () => {

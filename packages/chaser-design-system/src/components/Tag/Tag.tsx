@@ -22,7 +22,7 @@ const Tag = ({
     <Box
       as="span"
       className={clsx(tag[variant], className)}
-      display="inline-flex"
+      display="inline"
       alignItems="center"
     >
       {children}
@@ -52,18 +52,18 @@ type TagGroupProps = {
   className?: string;
 };
 
-const TagGroup = ({ children, className }: TagGroupProps) => {
-  return (
-    <Box
-      className={clsx(tagGroup, className)}
-      display="flex"
-      flexWrap="wrap"
-      gap="small"
-    >
-      {children}
-    </Box>
-  );
-};
+  const TagGroup = ({ children, className }: TagGroupProps) => {
+    return (
+      <Box
+        className={clsx(tagGroup, className)}
+        display="flex"
+        gap="small"
+        style={{ flexWrap: 'wrap' }}
+      >
+        {children}
+      </Box>
+    );
+  };
 
 const TagComponent = Object.assign(Tag, {
   Group: TagGroup,
