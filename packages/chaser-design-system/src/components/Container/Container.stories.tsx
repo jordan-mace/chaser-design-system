@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-webpack5';
+import React from 'react';
 import { Container } from '.';
 import { Box } from '../Box';
 
