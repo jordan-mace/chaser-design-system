@@ -30,60 +30,111 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
-  args: {
-    checked: false,
-    label: 'Notifications',
+  render: () => {
+    const [checked, setChecked] = useState(false);
+    return (
+      <Toggle
+        checked={checked}
+        onChange={setChecked}
+        label="Notifications"
+      />
+    );
   },
 };
 
 export const Checked: Story = {
-  args: {
-    checked: true,
-    label: 'Enabled',
+  render: () => {
+    const [checked, setChecked] = useState(true);
+    return (
+      <Toggle
+        checked={checked}
+        onChange={setChecked}
+        label="Enabled"
+      />
+    );
   },
 };
 
 export const Unchecked: Story = {
-  args: {
-    checked: false,
-    label: 'Disabled',
+  render: () => {
+    const [checked, setChecked] = useState(false);
+    return (
+      <Toggle
+        checked={checked}
+        onChange={setChecked}
+        label="Disabled"
+      />
+    );
   },
 };
 
 export const Small: Story = {
-  args: {
-    size: 'small',
-    label: 'Small toggle',
+  render: () => {
+    const [checked, setChecked] = useState(false);
+    return (
+      <Toggle
+        checked={checked}
+        onChange={setChecked}
+        size="small"
+        label="Small toggle"
+      />
+    );
   },
 };
 
 export const Medium: Story = {
-  args: {
-    size: 'medium',
-    label: 'Medium toggle',
+  render: () => {
+    const [checked, setChecked] = useState(false);
+    return (
+      <Toggle
+        checked={checked}
+        onChange={setChecked}
+        size="medium"
+        label="Medium toggle"
+      />
+    );
   },
 };
 
 export const Large: Story = {
-  args: {
-    size: 'large',
-    label: 'Large toggle',
+  render: () => {
+    const [checked, setChecked] = useState(false);
+    return (
+      <Toggle
+        checked={checked}
+        onChange={setChecked}
+        size="large"
+        label="Large toggle"
+      />
+    );
   },
 };
 
 export const Disabled: Story = {
-  args: {
-    checked: false,
-    label: 'Disabled toggle',
-    disabled: true,
+  render: () => {
+    const [checked, setChecked] = useState(false);
+    return (
+      <Toggle
+        checked={checked}
+        onChange={setChecked}
+        label="Disabled toggle"
+        disabled
+      />
+    );
   },
 };
 
 export const DisabledChecked: Story = {
-  args: {
-    checked: true,
-    label: 'Disabled checked',
-    disabled: true,
+  render: () => {
+    const [checked, setChecked] = useState(true);
+    return (
+      <Toggle
+        checked={checked}
+        onChange={setChecked}
+        label="Disabled checked"
+        disabled
+      />
+    );
   },
 };
 
@@ -102,27 +153,38 @@ export const WithOnChange: Story = {
 };
 
 export const AllSizes: Story = {
-  render: () => (
-    <>
-      <Toggle size="small" label="Small" />
-      <Toggle size="medium" label="Medium" checked />
-      <Toggle size="large" label="Large" />
-    </>
-  ),
+  render: () => {
+    const [small, setSmall] = useState(false);
+    const [medium, setMedium] = useState(true);
+    const [large, setLarge] = useState(false);
+    return (
+      <>
+        <Toggle size="small" label="Small" checked={small} onChange={setSmall} />
+        <Toggle size="medium" label="Medium" checked={medium} onChange={setMedium} />
+        <Toggle size="large" label="Large" checked={large} onChange={setLarge} />
+      </>
+    );
+  },
 };
 
 export const WithLabels: Story = {
-  render: () => (
-    <>
-      <Toggle checked label="Dark Mode" />
-      <Toggle label="Notifications" />
-      <Toggle checked label="Auto-save" />
-    </>
-  ),
+  render: () => {
+    const [darkMode, setDarkMode] = useState(true);
+    const [notifications, setNotifications] = useState(false);
+    const [autoSave, setAutoSave] = useState(true);
+    return (
+      <>
+        <Toggle checked={darkMode} onChange={setDarkMode} label="Dark Mode" />
+        <Toggle checked={notifications} onChange={setNotifications} label="Notifications" />
+        <Toggle checked={autoSave} onChange={setAutoSave} label="Auto-save" />
+      </>
+    );
+  },
 };
 
 export const NoLabel: Story = {
-  args: {
-    checked: false,
+  render: () => {
+    const [checked, setChecked] = useState(false);
+    return <Toggle checked={checked} onChange={setChecked} />;
   },
 };
