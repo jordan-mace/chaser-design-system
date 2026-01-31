@@ -26,3 +26,7 @@ export { ToastProvider, Toast, useToast } from './Toast';
 export { default as Box } from './Box';
 export type { BoxProps } from './Box';
 export { Table } from './Table';
+export { TextArea } from './TextArea';
+export type { TextAreaProps } from './TextArea';
+export { Pagination } from './Pagination';
+export type { PaginationProps } from './Pagination';
