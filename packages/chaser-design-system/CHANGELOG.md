@@ -1,5 +1,11 @@
 # @jordan-mace/chaser-design-system
 
+## 1.2.8
+
+### Patch Changes
+
+- 031ae33: Ensure all components expose Sprinkles as props
+
 ## 1.2.6
 
 ### Patch Changes
