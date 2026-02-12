@@ -1,5 +1,14 @@
 # @jordan-mace/chaser-design-system
 
+## 1.2.1
+
+### Patch Changes
+
+- Fix build error when using CSS files from published package
+  - Changed layers.css.ts to export string constants instead of calling globalLayer() at module level
+  - Prevents vanilla-extract build error in consumer applications
+  - Maintains CSS layer functionality without breaking builds
+
 ## 1.2.0
 
 ### Minor Changes
