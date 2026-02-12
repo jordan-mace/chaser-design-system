@@ -1,9 +1,9 @@
 import { style } from '@vanilla-extract/css';
-import { componentsLayer } from '../../styles/layers.css';
+import { resetLayer } from '../../styles/layers.css';
 
 export const reset = style({
   '@layer': {
-    [componentsLayer]: {
+    [resetLayer]: {
       margin: 0,
       padding: 0,
       border: 0,

@@ -3,6 +3,7 @@
   "version": "1.2.8",
   "type": "module",
   "sideEffects": [
+    "*.css.mjs",
     "*.css.js"
   ],
   "repository": {
@@ -11,16 +12,24 @@
   },
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
-      "import": "./dist/index.js"
+      "types": "./dist/index.d.mts",
+      "import": "./dist/index.mjs"
     },
     "./layers.css": {
-      "types": "./dist/styles/layers.css.d.ts",
-      "import": "./dist/styles/layers.css.js"
+      "types": "./dist/styles/layers.css.d.mts",
+      "import": "./dist/styles/layers.css.mjs"
+    },
+    "./reset.css": {
+      "types": "./dist/styles/reset.css.d.mts",
+      "import": "./dist/styles/reset.css.mjs"
     },
     "./theme.css": {
-      "types": "./dist/styles/theme.css.d.ts",
-      "import": "./dist/styles/theme.css.js"
+      "types": "./dist/styles/theme.css.d.mts",
+      "import": "./dist/styles/theme.css.mjs"
+    },
+    "./sprinkles.css": {
+      "types": "./dist/styles/sprinkles.css.d.mts",
+      "import": "./dist/styles/sprinkles.css.mjs"
     }
   },
   "files": [
@@ -28,8 +37,8 @@
     "src"
   ],
   "scripts": {
-    "build": "rm -rf dist && tsc --project tsconfig.build.json --noCheck --skipLibCheck || true",
-    "dev": "tsc --project tsconfig.build.json --watch --noCheck --skipLibCheck || true",
+    "build": "tsdown src/index.ts src/styles/layers.css.ts src/styles/reset.css.ts src/styles/theme.css.ts src/styles/sprinkles.css.ts --format esm --dts --clean",
+    "dev": "tsdown src/index.ts src/styles/layers.css.ts src/styles/reset.css.ts src/styles/theme.css.ts src/styles/sprinkles.css.ts --format esm --dts --watch",
     "format": "prettier --write .",
     "lint": "eslint .",
     "test": "vitest --config=vitest.browser.config.ts",
