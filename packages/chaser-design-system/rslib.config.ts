@@ -10,21 +10,15 @@ export default defineConfig({
       dts: true,
       source: {
         entry: {
-          index: [
-            'src/index.ts',
-            'src/components/index.ts',
-            'src/components/*/*.{ts,tsx}',
-            'src/styles/*.ts',
-            'src/styles/*.css.ts',
-            '!**/*/*.stories.{ts,tsx}',
-            '!**/*/*.test.{ts,tsx}',
-          ],
-          'layers.css': 'src/styles/layers.css.ts',
-          'reset.css': 'src/styles/reset.css.ts',
-          'theme.css': 'src/styles/theme.css.ts',
+          index: 'src/index.ts',
         },
       },
       bundle: false,
+      output: {
+        distPath: {
+          root: './dist',
+        },
+      },
     },
   ],
   plugins: [
@@ -37,9 +31,18 @@ export default defineConfig({
   tools: {
     rspack: {
       plugins: [new VanillaExtractPlugin()],
-    },
-    cssLoader: {
-      url: false,
+      module: {
+        rules: [
+          {
+            test: /\.css\.ts$/,
+            use: [
+              {
+                loader: '@vanilla-extract/webpack-plugin/loader',
+              },
+            ],
+          },
+        ],
+      },
     },
   },
 });

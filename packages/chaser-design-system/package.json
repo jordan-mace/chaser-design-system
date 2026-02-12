@@ -11,28 +11,30 @@
   },
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
-      "import": "./dist/index.js"
+      "types": "./dist/index.d.mts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
     },
     "./cssReset.css": {
-      "import": "./dist/styles/reset.css.js",
-      "types": "./dist/styles/reset.css.d.ts"
+      "types": "./dist/styles/reset.css.d.ts",
+      "default": "./src/styles/reset.css.ts"
     },
     "./layers.css": {
-      "import": "./dist/styles/layers.css.js",
-      "types": "./dist/styles/layers.css.d.ts"
+      "types": "./dist/styles/layers.css.d.ts",
+      "default": "./src/styles/layers.css.ts"
     },
     "./theme.css": {
-      "import": "./dist/styles/theme.css.js",
-      "types": "./dist/styles/theme.css.d.ts"
+      "types": "./dist/styles/theme.css.d.ts",
+      "default": "./src/styles/theme.css.ts"
     }
   },
   "files": [
-    "dist"
+    "dist",
+    "src"
   ],
   "scripts": {
-    "build": "rslib build",
-    "dev": "rslib build --watch",
+    "build": "tsdown",
+    "dev": "tsdown --watch",
     "format": "prettier --write .",
     "lint": "eslint .",
     "test": "vitest --config=vitest.browser.config.ts",
@@ -54,11 +56,13 @@
     "@types/node": "^24.10.1",
     "@types/react": "^19.2.6",
     "@types/react-dom": "^19.2.3",
+    "@vanilla-extract/esbuild-plugin": "^2.3.21",
     "@vanilla-extract/vite-plugin": "^5.1.1",
     "@vanilla-extract/webpack-plugin": "^2.3.22",
     "@vitejs/plugin-react": "^5.1.1",
     "@vitest/browser-playwright": "^4.0.10",
     "css-loader": "^7.1.2",
+    "esbuild": "^0.27.3",
     "eslint": "^9.39.0",
     "eslint-plugin-storybook": "^10.0.8",
     "globals": "^16.4.0",
@@ -68,6 +72,7 @@
     "storybook": "^10.1.8",
     "storybook-addon-rslib": "^3.1.0",
     "storybook-react-rsbuild": "^3.1.0",
+    "tsdown": "^0.20.3",
     "typescript": "^5.9.3",
     "typescript-eslint": "^8.46.2",
     "vitest": "^4.0.10",
