@@ -3,9 +3,13 @@
 *.local
 *.log*
 
-# Dist
+# Dependencies
 node_modules
+
+# Build output (excluded from git but included in npm package via .npmignore)
 dist/
+
+# Storybook build
 storybook-static
 
 # IDE

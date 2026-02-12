@@ -1,0 +1,25 @@
+# Source files
+src/
+.storybook/
+*.test.ts
+*.test.tsx
+*.spec.ts
+*.spec.tsx
+
+# Config files
+eslint.config.mjs
+rstest.config.ts
+tsconfig.json
+rslib.config.ts
+.prettierrc
+.prettierignore
+
+# Documentation
+AGENTS.md
+CHANGELOG.md
+README.md
+
+# Other
+.vitest-attachments/
+storybook-static/
+*.log*

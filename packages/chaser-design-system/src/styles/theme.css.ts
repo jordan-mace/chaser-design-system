@@ -1,6 +1,18 @@
-import { createGlobalTheme } from '@vanilla-extract/css';
+import { createGlobalTheme, globalStyle } from '@vanilla-extract/css';
 import { colors } from './sprinkles.css';
 import { themeLayer } from './layers.css';
+
+// Import Google Fonts
+globalStyle('@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700&display=swap");', {});
+
+// Apply global font styles
+globalStyle('body', {
+  fontFamily: "'Inter', sans-serif",
+});
+
+globalStyle('h1, h2, h3, h4, h5, h6', {
+  fontFamily: "'Poppins', sans-serif",
+});
 
 export const vars = createGlobalTheme(':root', {
   '@layer': themeLayer,
