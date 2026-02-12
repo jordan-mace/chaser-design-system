@@ -15,15 +15,15 @@
       "import": "./dist/index.js"
     },
     "./cssReset.css": {
-      "import": "./dist/reset.css.js",
+      "import": "./dist/styles/reset.css.js",
       "types": "./dist/styles/reset.css.d.ts"
     },
     "./layers.css": {
-      "import": "./dist/layers.css.js",
+      "import": "./dist/styles/layers.css.js",
       "types": "./dist/styles/layers.css.d.ts"
     },
     "./theme.css": {
-      "import": "./dist/theme.css.js",
+      "import": "./dist/styles/theme.css.js",
       "types": "./dist/styles/theme.css.d.ts"
     }
   },
