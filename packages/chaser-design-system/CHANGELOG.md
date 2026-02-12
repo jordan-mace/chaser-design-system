@@ -1,5 +1,11 @@
 # @jordan-mace/chaser-design-system
 
+## 1.2.6
+
+### Patch Changes
+
+- c56943b: Fix package.json exports to point to compiled JavaScript files instead of TypeScript source files. This fixes vanilla-extract runtime errors when importing style files in the browser. Removed cssReset.css export as it uses globalStyle and should not be imported as a module.
+
 ## 1.2.5
 
 ### Patch Changes
