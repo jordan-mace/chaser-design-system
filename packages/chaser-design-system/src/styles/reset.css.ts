@@ -21,14 +21,16 @@ figure, figcaption, footer, header, hgroup, \
 menu, nav, output, ruby, section, summary,\
 time, mark, audio, video',
   {
-    [resetLayer]: {
-      margin: 0,
-      padding: 0,
-      border: 0,
-      fontSize: '100%',
-      font: 'inherit',
-      verticalAlign: 'baseline',
-    },
+    "@layer": {
+      [resetLayer]: {
+        margin: 0,
+        padding: 0,
+        border: 0,
+        fontSize: '100%',
+        font: 'inherit',
+        verticalAlign: 'baseline',
+      },
+    }
   },
 );
 
@@ -37,43 +39,55 @@ globalStyle(
   'article, aside, details, figcaption, figure, \
 footer, header, hgroup, menu, nav, section',
   {
-    [resetLayer]: {
-      display: 'block',
-    },
+    "@layer": {
+      [resetLayer]: {
+        display: 'block',
+      },
+    }
   },
 );
 
 globalStyle('body', {
-  [resetLayer]: {
-    lineHeight: 1,
-  },
+  '@layer': {
+    [resetLayer]: {
+      lineHeight: 1,
+    },
+  }
 });
 
 globalStyle('ol, ul', {
-  [resetLayer]: {
-    listStyle: 'none',
-  },
+  '@layer': {
+    [resetLayer]: {
+      listStyle: 'none',
+    },
+  }
 });
 
 globalStyle('blockquote, q', {
-  [resetLayer]: {
-    quotes: 'none',
-  },
+  '@layer': {
+    [resetLayer]: {
+      quotes: 'none',
+    },
+  }
 });
 
 globalStyle(
   'blockquote:before, blockquote:after, \
 q:before, q:after',
   {
-    [resetLayer]: {
-      content: 'none',
-    },
+    '@layer': {
+      [resetLayer]: {
+        content: 'none',
+      },
+    }
   },
 );
 
 globalStyle('table', {
-  [resetLayer]: {
-    borderCollapse: 'collapse',
-    borderSpacing: 0,
-  },
+  '@layer': {
+    [resetLayer]: {
+      borderCollapse: 'collapse',
+      borderSpacing: 0,
+    },
+  }
 });
