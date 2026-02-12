@@ -14,9 +14,14 @@
       "types": "./dist/index.d.ts",
       "import": "./dist/index.js"
     },
-    "./cssReset.css": "./src/styles/reset.css.ts",
-    "./layers.css": "./src/styles/layers.css.ts",
-    "./theme.css": "./src/styles/theme.css.ts"
+    "./layers.css": {
+      "types": "./dist/styles/layers.css.d.ts",
+      "import": "./dist/styles/layers.css.js"
+    },
+    "./theme.css": {
+      "types": "./dist/styles/theme.css.d.ts",
+      "import": "./dist/styles/theme.css.js"
+    }
   },
   "files": [
     "dist",
