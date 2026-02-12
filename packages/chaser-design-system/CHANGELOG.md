@@ -1,5 +1,11 @@
 # @jordan-mace/chaser-design-system
 
+## 1.2.4
+
+### Patch Changes
+
+- d9065eb: Switch to tsc-based build with separate compilation of TypeScript and Vanilla Extract files. Export source .css.ts files to allow consumer's Vanilla Extract plugin to process styles, fixing SSR runtime errors.
+
 ## 1.2.3
 
 ### Patch Changes
