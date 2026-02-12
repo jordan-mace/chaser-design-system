@@ -8,14 +8,15 @@ import {
   emptyStateAction,
 } from './styles.css';
 import Box from '../Box';
+import { Sprinkles } from '../../styles/sprinkles.css';
 
-export interface EmptyStateProps {
-  icon?: React.ReactNode;
-  title?: string;
-  description?: string;
-  action?: React.ReactNode;
-  className?: string;
-}
+export type EmptyStateProps = React.HTMLAttributes<HTMLDivElement> &
+  Sprinkles & {
+    icon?: React.ReactNode;
+    title?: string;
+    description?: string;
+    action?: React.ReactNode;
+  };
 
 const EmptyState = ({
   icon,
@@ -41,11 +42,7 @@ const EmptyState = ({
           {description}
         </Box>
       )}
-      {action && (
-        <Box className={emptyStateAction}>
-          {action}
-        </Box>
-      )}
+      {action && <Box className={emptyStateAction}>{action}</Box>}
     </Box>
   );
 };

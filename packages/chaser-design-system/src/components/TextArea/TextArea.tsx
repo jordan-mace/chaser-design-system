@@ -3,11 +3,13 @@ import React from 'react';
 import { textAreaStyle, label } from './styles.css';
 import { text } from '../Text/styles.css';
 import Box from '../Box';
+import { Sprinkles } from '../../styles/sprinkles.css';
 
-export type TextAreaProps = React.TextareaHTMLAttributes<HTMLTextAreaElement> & {
-  label?: string;
-  fullWidth?: boolean;
-};
+export type TextAreaProps = React.TextareaHTMLAttributes<HTMLTextAreaElement> &
+  Sprinkles & {
+    label?: string;
+    fullWidth?: boolean;
+  };
 
 const TextArea = (props: TextAreaProps) => {
   return (
@@ -19,10 +21,7 @@ const TextArea = (props: TextAreaProps) => {
       {props.label && (
         <Box
           as="label"
-          className={clsx(
-            text,
-            label,
-          )}
+          className={clsx(text, label)}
           marginX={{ mobile: 'auto', tablet: 'none' }}
           marginY={{ mobile: 'none', tablet: 'auto' }}
           htmlFor={props.id}

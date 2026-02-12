@@ -11,9 +11,24 @@ import {
   drawerFooter,
 } from './styles.css';
 import Box from '../Box';
+import { Sprinkles } from '../../styles/sprinkles.css';
 
 export type DrawerPosition = 'left' | 'right' | 'top' | 'bottom';
 export type DrawerSize = 'small' | 'medium' | 'large' | 'full';
+
+type DrawerPropsBase = React.HTMLAttributes<HTMLDivElement> & {
+  isOpen: boolean;
+  onClose: () => void;
+  title?: string;
+  position?: DrawerPosition;
+  size?: DrawerSize;
+  children?: React.ReactNode;
+  footer?: React.ReactNode;
+  showCloseButton?: boolean;
+  closeOnOverlayClick?: boolean;
+};
+
+export type DrawerProps = DrawerPropsBase & Sprinkles;
 
 const sizeMap: Record<DrawerPosition, Record<DrawerSize, string>> = {
   left: {
@@ -41,18 +56,6 @@ const sizeMap: Record<DrawerPosition, Record<DrawerSize, string>> = {
     full: '100vh',
   },
 };
-
-export interface DrawerProps extends React.HTMLAttributes<HTMLDivElement> {
-  isOpen: boolean;
-  onClose: () => void;
-  title?: string;
-  position?: DrawerPosition;
-  size?: DrawerSize;
-  children?: React.ReactNode;
-  footer?: React.ReactNode;
-  showCloseButton?: boolean;
-  closeOnOverlayClick?: boolean;
-}
 
 const Drawer = ({
   isOpen,
@@ -139,7 +142,11 @@ const Drawer = ({
           {children}
         </Box>
 
-        {footer && <Box as="div" className={drawerFooter}>{footer}</Box>}
+        {footer && (
+          <Box as="div" className={drawerFooter}>
+            {footer}
+          </Box>
+        )}
       </Box>
     </>
   );

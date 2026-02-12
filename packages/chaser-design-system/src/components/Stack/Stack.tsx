@@ -1,20 +1,26 @@
 import React, { forwardRef } from 'react';
 import Box from '../Box';
+import { Sprinkles } from '../../styles/sprinkles.css';
 
 export type StackDirection = 'row' | 'column';
 export type StackAlign = 'start' | 'center' | 'end' | 'stretch';
-export type StackJustify = 'start' | 'center' | 'end' | 'between' | 'around' | 'evenly';
+export type StackJustify =
+  | 'start'
+  | 'center'
+  | 'end'
+  | 'between'
+  | 'around'
+  | 'evenly';
 
-export interface StackProps {
-  direction?: StackDirection;
-  align?: StackAlign;
-  justify?: StackJustify;
-  gap?: 'none' | 'small' | 'medium' | 'large';
-  wrap?: boolean;
-  children?: React.ReactNode;
-  className?: string;
-  style?: React.CSSProperties;
-}
+export type StackProps = React.HTMLAttributes<HTMLDivElement> &
+  Sprinkles & {
+    direction?: StackDirection;
+    align?: StackAlign;
+    justify?: StackJustify;
+    gap?: 'none' | 'small' | 'medium' | 'large';
+    wrap?: boolean;
+    children?: React.ReactNode;
+  };
 
 const alignMap: Record<StackAlign, string> = {
   start: 'flex-start',
@@ -33,10 +39,23 @@ const justifyMap: Record<StackJustify, string> = {
 };
 
 const Stack = forwardRef<HTMLElement, StackProps>(
-  ({ direction = 'column', align, justify, gap, wrap, children, className, style, ...rest }, ref) => {
+  (
+    {
+      direction = 'column',
+      align,
+      justify,
+      gap,
+      wrap,
+      children,
+      className,
+      style,
+      ...rest
+    },
+    ref,
+  ) => {
     const alignItems = align ? alignMap[align] : undefined;
     const justifyContent = justify ? justifyMap[justify] : undefined;
-    
+
     return (
       <Box
         ref={ref}
@@ -52,7 +71,7 @@ const Stack = forwardRef<HTMLElement, StackProps>(
         {children}
       </Box>
     );
-  }
+  },
 );
 
 Stack.displayName = 'Stack';

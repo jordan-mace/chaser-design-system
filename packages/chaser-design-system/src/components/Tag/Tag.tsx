@@ -2,14 +2,15 @@ import clsx from 'clsx';
 import React from 'react';
 import { tag, removeButton, tagGroup } from './styles.css';
 import Box from '../Box';
+import { Sprinkles } from '../../styles/sprinkles.css';
 
-type TagProps = {
-  children: React.ReactNode;
-  variant?: 'default' | 'primary' | 'success' | 'warning' | 'error';
-  onRemove?: () => void;
-  removable?: boolean;
-  className?: string;
-};
+type TagProps = React.HTMLAttributes<HTMLSpanElement> &
+  Sprinkles & {
+    children: React.ReactNode;
+    variant?: 'default' | 'primary' | 'success' | 'warning' | 'error';
+    onRemove?: () => void;
+    removable?: boolean;
+  };
 
 const Tag = ({
   children,

@@ -1,16 +1,23 @@
 import clsx from 'clsx';
 import React from 'react';
-import { paginationContainer, pageButton, pageButtonVariants, ellipsis } from './styles.css';
+import {
+  paginationContainer,
+  pageButton,
+  pageButtonVariants,
+  ellipsis,
+} from './styles.css';
 import Box from '../Box';
+import { Sprinkles } from '../../styles/sprinkles.css';
 
-export type PaginationProps = {
-  currentPage: number;
-  totalPages: number;
-  onPageChange: (page: number) => void;
-  siblingCount?: number;
-  showFirstLast?: boolean;
-  showPrevNext?: boolean;
-};
+export type PaginationProps = React.HTMLAttributes<HTMLDivElement> &
+  Sprinkles & {
+    currentPage: number;
+    totalPages: number;
+    onPageChange: (page: number) => void;
+    siblingCount?: number;
+    showFirstLast?: boolean;
+    showPrevNext?: boolean;
+  };
 
 const Pagination = ({
   currentPage,
@@ -19,23 +26,24 @@ const Pagination = ({
   siblingCount = 1,
   showFirstLast = true,
   showPrevNext = true,
+  ...props
 }: PaginationProps) => {
   const generatePageNumbers = () => {
     const pages: (number | string)[] = [];
-    
+
     const leftSiblingIndex = Math.max(currentPage - siblingCount, 1);
     const rightSiblingIndex = Math.min(currentPage + siblingCount, totalPages);
-    
+
     const shouldShowLeftEllipsis = leftSiblingIndex > 2;
     const shouldShowRightEllipsis = rightSiblingIndex < totalPages - 1;
-    
+
     if (totalPages <= 7) {
       for (let i = 1; i <= totalPages; i++) {
         pages.push(i);
       }
     } else {
       pages.push(1);
-      
+
       if (shouldShowLeftEllipsis) {
         pages.push('left-ellipsis');
       } else if (currentPage > 3) {
@@ -43,13 +51,13 @@ const Pagination = ({
           pages.push(i);
         }
       }
-      
+
       for (let i = leftSiblingIndex; i <= rightSiblingIndex; i++) {
         if (i !== 1 && i !== totalPages) {
           pages.push(i);
         }
       }
-      
+
       if (shouldShowRightEllipsis) {
         pages.push('right-ellipsis');
       } else if (currentPage < totalPages - 2) {
@@ -57,17 +65,18 @@ const Pagination = ({
           pages.push(i);
         }
       }
-      
+
       pages.push(totalPages);
     }
-    
+
     return pages;
   };
-  
+
   const pages = generatePageNumbers();
-  
+  const { className, ...restProps } = props;
+
   return (
-    <Box className={paginationContainer}>
+    <Box className={clsx(paginationContainer, className)} {...restProps}>
       {showFirstLast && (
         <Box
           as="button"
@@ -78,7 +87,7 @@ const Pagination = ({
           {'<<'}
         </Box>
       )}
-      
+
       {showPrevNext && (
         <Box
           as="button"
@@ -89,15 +98,17 @@ const Pagination = ({
           {'<'}
         </Box>
       )}
-      
-      {pages.map((page, index) => (
+
+      {pages.map((page, index) =>
         typeof page === 'number' ? (
           <Box
             key={`page-${page}`}
             as="button"
             className={clsx(
               pageButton,
-              page === currentPage ? pageButtonVariants.active : pageButtonVariants.default
+              page === currentPage
+                ? pageButtonVariants.active
+                : pageButtonVariants.default,
             )}
             onClick={() => onPageChange(page)}
           >
@@ -107,9 +118,9 @@ const Pagination = ({
           <Box key={`${page}-${index}`} className={ellipsis}>
             ...
           </Box>
-        )
-      ))}
-      
+        ),
+      )}
+
       {showPrevNext && (
         <Box
           as="button"
@@ -120,7 +131,7 @@ const Pagination = ({
           {'>'}
         </Box>
       )}
-      
+
       {showFirstLast && (
         <Box
           as="button"

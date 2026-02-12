@@ -2,14 +2,13 @@ import clsx from 'clsx';
 import React, { forwardRef, useEffect, useRef } from 'react';
 import { checkboxContainer, checkboxInput, checkboxLabel } from './styles.css';
 import Box from '../Box';
+import { Sprinkles } from '../../styles/sprinkles.css';
 
-type CheckboxProps = Omit<
-  React.InputHTMLAttributes<HTMLInputElement>,
-  'type'
-> & {
-  label?: string;
-  indeterminate?: boolean;
-};
+type CheckboxProps = Omit<React.InputHTMLAttributes<HTMLInputElement>, 'type'> &
+  Sprinkles & {
+    label?: string;
+    indeterminate?: boolean;
+  };
 
 const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
   ({ label, className, indeterminate, ...props }, ref) => {
@@ -47,7 +46,11 @@ const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
           style={{ width: '18px', height: '18px' }}
           {...props}
         />
-        {label && <Box as="span" className={checkboxLabel}>{label}</Box>}
+        {label && (
+          <Box as="span" className={checkboxLabel}>
+            {label}
+          </Box>
+        )}
       </Box>
     );
   },

@@ -6,16 +6,17 @@ import {
   scrollAreaViewport,
 } from './styles.css';
 import Box from '../Box';
+import { Sprinkles } from '../../styles/sprinkles.css';
 
 export type ScrollAreaOrientation = 'vertical' | 'horizontal' | 'both';
 
-export interface ScrollAreaProps {
-  children: React.ReactNode;
-  orientation?: ScrollAreaOrientation;
-  maxHeight?: string | number;
-  maxWidth?: string | number;
-  className?: string;
-}
+export type ScrollAreaProps = React.HTMLAttributes<HTMLDivElement> &
+  Sprinkles & {
+    children: React.ReactNode;
+    orientation?: ScrollAreaOrientation;
+    maxHeight?: string | number;
+    maxWidth?: string | number;
+  };
 
 const ScrollArea = ({
   children,
@@ -40,9 +41,7 @@ const ScrollArea = ({
       style={style}
       {...props}
     >
-      <Box className={scrollAreaViewport}>
-        {children}
-      </Box>
+      <Box className={scrollAreaViewport}>{children}</Box>
     </Box>
   );
 };

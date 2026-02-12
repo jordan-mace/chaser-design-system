@@ -11,15 +11,17 @@ import {
 } from './styles.css';
 import React, { useState } from 'react';
 import Box from '../Box';
+import { Sprinkles } from '../../styles/sprinkles.css';
 
 export type TooltipPosition = 'top' | 'bottom' | 'left' | 'right';
 
-export interface TooltipProps extends React.HTMLAttributes<HTMLDivElement> {
-  content: string;
-  position?: TooltipPosition;
-  showArrow?: boolean;
-  children: React.ReactNode;
-}
+export type TooltipProps = React.HTMLAttributes<HTMLDivElement> &
+  Sprinkles & {
+    content: string;
+    position?: TooltipPosition;
+    showArrow?: boolean;
+    children: React.ReactNode;
+  };
 
 const Tooltip = ({
   content,
@@ -50,17 +52,20 @@ const Tooltip = ({
       {children}
       <Box
         as="div"
-        className={clsx(
-          tooltipContent,
-          tooltipPositions[position],
-        )}
+        className={clsx(tooltipContent, tooltipPositions[position])}
         data-visible={isVisible}
         role="tooltip"
       >
         {showArrow && (
           <Box
             as="span"
-            className={clsx(tooltipArrow, arrowStyle.top, arrowStyle.bottom, arrowStyle.left, arrowStyle.right)}
+            className={clsx(
+              tooltipArrow,
+              arrowStyle.top,
+              arrowStyle.bottom,
+              arrowStyle.left,
+              arrowStyle.right,
+            )}
           />
         )}
         {content}

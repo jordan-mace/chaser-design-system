@@ -16,6 +16,7 @@ import {
   comboboxErrorMessage,
 } from './styles.css';
 import Box from '../Box';
+import { Sprinkles } from '../../styles/sprinkles.css';
 
 export interface ComboboxOption {
   value: string;
@@ -23,23 +24,30 @@ export interface ComboboxOption {
   disabled?: boolean;
 }
 
-export interface ComboboxProps extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'onChange' | 'value'> {
-  label?: string;
-  options: ComboboxOption[];
-  value?: string;
-  onChange?: (value: string, option: ComboboxOption | null) => void;
-  onInputChange?: (inputValue: string) => void;
-  placeholder?: string;
-  hint?: string;
-  error?: boolean;
-  errorMessage?: string;
-  fullWidth?: boolean;
-  clearable?: boolean;
-  disabled?: boolean;
-  filterFn?: (option: ComboboxOption, inputValue: string) => boolean;
-}
+export type ComboboxProps = Omit<
+  React.InputHTMLAttributes<HTMLInputElement>,
+  'onChange' | 'value'
+> &
+  Sprinkles & {
+    label?: string;
+    options: ComboboxOption[];
+    value?: string;
+    onChange?: (value: string, option: ComboboxOption | null) => void;
+    onInputChange?: (inputValue: string) => void;
+    placeholder?: string;
+    hint?: string;
+    error?: boolean;
+    errorMessage?: string;
+    fullWidth?: boolean;
+    clearable?: boolean;
+    disabled?: boolean;
+    filterFn?: (option: ComboboxOption, inputValue: string) => boolean;
+  };
 
-const defaultFilterFn = (option: ComboboxOption, inputValue: string): boolean => {
+const defaultFilterFn = (
+  option: ComboboxOption,
+  inputValue: string,
+): boolean => {
   return option.label.toLowerCase().includes(inputValue.toLowerCase());
 };
 
@@ -66,7 +74,7 @@ const Combobox = ({
   const containerRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
-  const selectedOption = options.find(opt => opt.value === value);
+  const selectedOption = options.find((opt) => opt.value === value);
 
   useEffect(() => {
     if (selectedOption) {
@@ -76,11 +84,16 @@ const Combobox = ({
     }
   }, [selectedOption, isOpen]);
 
-  const filteredOptions = options.filter(option => filterFn(option, inputValue));
+  const filteredOptions = options.filter((option) =>
+    filterFn(option, inputValue),
+  );
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      if (containerRef.current && !containerRef.current.contains(event.target as Node)) {
+      if (
+        containerRef.current &&
+        !containerRef.current.contains(event.target as Node)
+      ) {
         setIsOpen(false);
         if (selectedOption) {
           setInputValue(selectedOption.label);
@@ -108,7 +121,7 @@ const Combobox = ({
 
   const handleOptionClick = (option: ComboboxOption) => {
     if (option.disabled) return;
-    
+
     setInputValue(option.label);
     setIsOpen(false);
     onChange?.(option.value, option);
@@ -131,17 +144,21 @@ const Combobox = ({
         if (!isOpen) {
           setIsOpen(true);
         }
-        setHighlightedIndex(prev => 
-          prev < filteredOptions.length - 1 ? prev + 1 : prev
+        setHighlightedIndex((prev) =>
+          prev < filteredOptions.length - 1 ? prev + 1 : prev,
         );
         break;
       case 'ArrowUp':
         e.preventDefault();
-        setHighlightedIndex(prev => (prev > 0 ? prev - 1 : prev));
+        setHighlightedIndex((prev) => (prev > 0 ? prev - 1 : prev));
         break;
       case 'Enter':
         e.preventDefault();
-        if (isOpen && highlightedIndex >= 0 && filteredOptions[highlightedIndex]) {
+        if (
+          isOpen &&
+          highlightedIndex >= 0 &&
+          filteredOptions[highlightedIndex]
+        ) {
           handleOptionClick(filteredOptions[highlightedIndex]);
         } else {
           setIsOpen(!isOpen);
@@ -158,16 +175,21 @@ const Combobox = ({
     }
   };
 
-  const displayValue = selectedOption && !isOpen ? selectedOption.label : inputValue;
+  const displayValue =
+    selectedOption && !isOpen ? selectedOption.label : inputValue;
 
   return (
-    <Box className={comboboxContainer} ref={containerRef} width={fullWidth ? '100%' : undefined}>
+    <Box
+      className={comboboxContainer}
+      ref={containerRef}
+      width={fullWidth ? '100%' : undefined}
+    >
       {label && (
         <Box as="label" className={comboboxLabel}>
           {label}
         </Box>
       )}
-      
+
       <Box position="relative">
         <Box
           as="input"
@@ -188,10 +210,14 @@ const Combobox = ({
           aria-expanded={isOpen}
           aria-autocomplete="list"
           aria-controls={isOpen ? 'combobox-listbox' : undefined}
-          aria-activedescendant={highlightedIndex >= 0 ? `option-${filteredOptions[highlightedIndex]?.value}` : undefined}
+          aria-activedescendant={
+            highlightedIndex >= 0
+              ? `option-${filteredOptions[highlightedIndex]?.value}`
+              : undefined
+          }
           {...props}
         />
-        
+
         {clearable && inputValue && !disabled && (
           <Box
             as="button"
@@ -203,7 +229,7 @@ const Combobox = ({
             ×
           </Box>
         )}
-        
+
         <Box className={comboboxArrow} aria-hidden="true">
           <svg width="12" height="12" viewBox="0 0 12 12" fill="currentColor">
             <path d="M6 8L1 3h10z" />
@@ -238,7 +264,10 @@ const Combobox = ({
                 aria-selected={option.value === value}
                 aria-disabled={option.disabled}
                 style={{
-                  backgroundColor: index === highlightedIndex ? 'var(--highlight-color, #f3f4f6)' : undefined,
+                  backgroundColor:
+                    index === highlightedIndex
+                      ? 'var(--highlight-color, #f3f4f6)'
+                      : undefined,
                 }}
               >
                 {option.label}

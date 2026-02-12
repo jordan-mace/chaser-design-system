@@ -21,6 +21,7 @@ import {
   fileUploadProgressFillVariants,
 } from './styles.css';
 import Box from '../Box';
+import { Sprinkles } from '../../styles/sprinkles.css';
 
 export interface FileUploadFile {
   id: string;
@@ -32,21 +33,22 @@ export interface FileUploadFile {
   errorMessage?: string;
 }
 
-export interface FileUploadProps extends React.HTMLAttributes<HTMLDivElement> {
-  label?: string;
-  files?: FileUploadFile[];
-  onFilesChange?: (files: FileUploadFile[]) => void;
-  onFileAdd?: (files: File[]) => void;
-  onFileRemove?: (fileId: string) => void;
-  accept?: string;
-  multiple?: boolean;
-  maxFileSize?: number;
-  maxFiles?: number;
-  disabled?: boolean;
-  dropzoneText?: string;
-  hint?: string;
-  showProgress?: boolean;
-}
+export type FileUploadProps = React.HTMLAttributes<HTMLDivElement> &
+  Sprinkles & {
+    label?: string;
+    files?: FileUploadFile[];
+    onFilesChange?: (files: FileUploadFile[]) => void;
+    onFileAdd?: (files: File[]) => void;
+    onFileRemove?: (fileId: string) => void;
+    accept?: string;
+    multiple?: boolean;
+    maxFileSize?: number;
+    maxFiles?: number;
+    disabled?: boolean;
+    dropzoneText?: string;
+    hint?: string;
+    showProgress?: boolean;
+  };
 
 const formatFileSize = (bytes: number): string => {
   if (bytes === 0) return '0 Bytes';
@@ -82,8 +84,8 @@ const FileUpload = ({
       return `File size exceeds ${formatFileSize(maxFileSize)}`;
     }
     if (accept) {
-      const acceptedTypes = accept.split(',').map(type => type.trim());
-      const isAccepted = acceptedTypes.some(type => {
+      const acceptedTypes = accept.split(',').map((type) => type.trim());
+      const isAccepted = acceptedTypes.some((type) => {
         if (type.includes('*')) {
           return file.type.startsWith(type.replace('/*', ''));
         }
@@ -96,36 +98,39 @@ const FileUpload = ({
     return null;
   };
 
-  const handleFiles = useCallback((fileList: FileList | null) => {
-    if (!fileList || disabled) return;
+  const handleFiles = useCallback(
+    (fileList: FileList | null) => {
+      if (!fileList || disabled) return;
 
-    const newFiles: File[] = [];
-    const errors: string[] = [];
+      const newFiles: File[] = [];
+      const errors: string[] = [];
 
-    Array.from(fileList).forEach(file => {
-      const validationError = validateFile(file);
-      if (validationError) {
-        errors.push(`${file.name}: ${validationError}`);
-      } else {
-        newFiles.push(file);
+      Array.from(fileList).forEach((file) => {
+        const validationError = validateFile(file);
+        if (validationError) {
+          errors.push(`${file.name}: ${validationError}`);
+        } else {
+          newFiles.push(file);
+        }
+      });
+
+      if (maxFiles && files.length + newFiles.length > maxFiles) {
+        errors.push(`Maximum ${maxFiles} files allowed`);
+        newFiles.splice(maxFiles - files.length);
       }
-    });
 
-    if (maxFiles && files.length + newFiles.length > maxFiles) {
-      errors.push(`Maximum ${maxFiles} files allowed`);
-      newFiles.splice(maxFiles - files.length);
-    }
+      if (errors.length > 0) {
+        setError(errors.join(', '));
+      } else {
+        setError(null);
+      }
 
-    if (errors.length > 0) {
-      setError(errors.join(', '));
-    } else {
-      setError(null);
-    }
-
-    if (newFiles.length > 0) {
-      onFileAdd?.(newFiles);
-    }
-  }, [disabled, files.length, maxFileSize, maxFiles, accept, onFileAdd]);
+      if (newFiles.length > 0) {
+        onFileAdd?.(newFiles);
+      }
+    },
+    [disabled, files.length, maxFileSize, maxFiles, accept, onFileAdd],
+  );
 
   const handleDragOver = (e: React.DragEvent) => {
     e.preventDefault();
@@ -190,7 +195,14 @@ const FileUpload = ({
         aria-disabled={disabled}
       >
         <Box className={fileUploadIcon} aria-hidden="true">
-          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+          <svg
+            width="48"
+            height="48"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+          >
             <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
             <polyline points="17,8 12,3 7,8" />
             <line x1="12" y1="3" x2="12" y2="15" />
@@ -233,9 +245,13 @@ const FileUpload = ({
                 </Box>
                 <Box as="p" className={fileUploadItemSize}>
                   {formatFileSize(file.size)}
-                  {file.status === 'uploading' && showProgress && ' • Uploading...'}
+                  {file.status === 'uploading' &&
+                    showProgress &&
+                    ' • Uploading...'}
                   {file.status === 'success' && ' • Complete'}
-                  {file.status === 'error' && file.errorMessage && ` • ${file.errorMessage}`}
+                  {file.status === 'error' &&
+                    file.errorMessage &&
+                    ` • ${file.errorMessage}`}
                 </Box>
                 {showProgress && file.status === 'uploading' && (
                   <Box className={fileUploadProgressBar}>

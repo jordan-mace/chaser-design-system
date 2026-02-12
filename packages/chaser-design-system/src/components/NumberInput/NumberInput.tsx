@@ -13,25 +13,30 @@ import {
   numberInputErrorMessage,
 } from './styles.css';
 import Box from '../Box';
+import { Sprinkles } from '../../styles/sprinkles.css';
 
 export type NumberInputPosition = 'right' | 'left';
 
-export interface NumberInputProps extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'onChange' | 'value' | 'min' | 'max'> {
-  label?: string;
-  value?: number | '';
-  onChange?: (value: number | '') => void;
-  min?: number;
-  max?: number;
-  step?: number;
-  stepperPosition?: NumberInputPosition;
-  placeholder?: string;
-  hint?: string;
-  error?: boolean;
-  errorMessage?: string;
-  fullWidth?: boolean;
-  disabled?: boolean;
-  allowEmpty?: boolean;
-}
+export type NumberInputProps = Omit<
+  React.InputHTMLAttributes<HTMLInputElement>,
+  'onChange' | 'value' | 'min' | 'max'
+> &
+  Sprinkles & {
+    label?: string;
+    value?: number | '';
+    onChange?: (value: number | '') => void;
+    min?: number;
+    max?: number;
+    step?: number;
+    stepperPosition?: NumberInputPosition;
+    placeholder?: string;
+    hint?: string;
+    error?: boolean;
+    errorMessage?: string;
+    fullWidth?: boolean;
+    disabled?: boolean;
+    allowEmpty?: boolean;
+  };
 
 const NumberInput = ({
   label,
@@ -53,7 +58,7 @@ const NumberInput = ({
 }: NumberInputProps) => {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const inputValue = e.target.value;
-    
+
     if (inputValue === '') {
       if (allowEmpty) {
         onChange?.('');
@@ -62,7 +67,7 @@ const NumberInput = ({
       }
       return;
     }
-    
+
     const numValue = parseFloat(inputValue);
     if (!isNaN(numValue)) {
       const clampedValue = Math.min(Math.max(numValue, min), max);
@@ -82,8 +87,10 @@ const NumberInput = ({
     onChange?.(newValue);
   }, [value, step, min, onChange]);
 
-  const isIncrementDisabled = disabled || (typeof value === 'number' && value >= max);
-  const isDecrementDisabled = disabled || (typeof value === 'number' && value <= min);
+  const isIncrementDisabled =
+    disabled || (typeof value === 'number' && value >= max);
+  const isDecrementDisabled =
+    disabled || (typeof value === 'number' && value <= min);
 
   const displayValue = value === '' ? '' : value;
 
@@ -94,7 +101,7 @@ const NumberInput = ({
           {label}
         </Box>
       )}
-      
+
       <Box className={numberInputContainer}>
         <Box
           as="input"
@@ -113,7 +120,7 @@ const NumberInput = ({
           )}
           {...props}
         />
-        
+
         <Box
           className={clsx(
             numberInputStepper,

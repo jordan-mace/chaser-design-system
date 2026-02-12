@@ -11,30 +11,27 @@ import {
   tableContainer,
 } from './styles.css';
 import Box from '../Box';
+import { Sprinkles } from '../../styles/sprinkles.css';
 
 // Context to pass striping info to rows
 const TableContext = createContext<{ striped?: boolean }>({});
 
-type TableProps = {
-  children: React.ReactNode;
-  className?: string;
-  striped?: boolean;
-  containerClassName?: string;
-};
+type TableProps = React.HTMLAttributes<HTMLTableElement> &
+  Sprinkles & {
+    children: React.ReactNode;
+    striped?: boolean;
+  };
 
 const TableComponent = ({
   children,
-  className,
   striped = false,
-  containerClassName,
+  className,
+  ...props
 }: TableProps) => {
   return (
     <TableContext.Provider value={{ striped }}>
-      <Box
-        className={clsx(tableContainer, containerClassName)}
-        width="100%"
-      >
-        <Box as="table" className={clsx(table, className)}>
+      <Box className={clsx(tableContainer, className)} width="100%">
+        <Box as="table" className={clsx(table)} {...props}>
           {children}
         </Box>
       </Box>
@@ -48,7 +45,11 @@ type TheadProps = {
 };
 
 const Thead = ({ children, className }: TheadProps) => {
-  return <Box as="thead" className={clsx(thead, className)}>{children}</Box>;
+  return (
+    <Box as="thead" className={clsx(thead, className)}>
+      {children}
+    </Box>
+  );
 };
 
 type TbodyProps = {
@@ -57,7 +58,11 @@ type TbodyProps = {
 };
 
 const Tbody = ({ children, className }: TbodyProps) => {
-  return <Box as="tbody" className={clsx(tbody, className)}>{children}</Box>;
+  return (
+    <Box as="tbody" className={clsx(tbody, className)}>
+      {children}
+    </Box>
+  );
 };
 
 type TfootProps = {
@@ -66,7 +71,11 @@ type TfootProps = {
 };
 
 const Tfoot = ({ children, className }: TfootProps) => {
-  return <Box as="tfoot" className={clsx(tfoot, className)}>{children}</Box>;
+  return (
+    <Box as="tfoot" className={clsx(tfoot, className)}>
+      {children}
+    </Box>
+  );
 };
 
 type TrProps = {
@@ -79,10 +88,7 @@ const Tr = ({ children, className }: TrProps) => {
   return (
     <Box
       as="tr"
-      className={clsx(
-        tr[striped ? 'striped' : 'default'],
-        className,
-      )}
+      className={clsx(tr[striped ? 'striped' : 'default'], className)}
     >
       {children}
     </Box>
@@ -95,7 +101,11 @@ type ThProps = {
 };
 
 const Th = ({ children, className }: ThProps) => {
-  return <Box as="th" className={clsx(th, className)}>{children}</Box>;
+  return (
+    <Box as="th" className={clsx(th, className)}>
+      {children}
+    </Box>
+  );
 };
 
 type TdProps = {

@@ -1,15 +1,16 @@
 import React, { forwardRef } from 'react';
 import Box from '../Box';
+import { Sprinkles } from '../../styles/sprinkles.css';
 
 export type ContainerSize = 'sm' | 'md' | 'lg' | 'xl' | 'full';
 
-export interface ContainerProps {
+export type ContainerProps = Sprinkles & {
   size?: ContainerSize;
   centerContent?: boolean;
   children?: React.ReactNode;
   className?: string;
   style?: React.CSSProperties;
-}
+};
 
 const sizeMap: Record<ContainerSize, string> = {
   sm: '640px',
@@ -39,7 +40,7 @@ const Container = forwardRef<HTMLElement, ContainerProps>(
         {children}
       </Box>
     );
-  }
+  },
 );
 
 Container.displayName = 'Container';

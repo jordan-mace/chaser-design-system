@@ -9,6 +9,7 @@ import {
   accordionGroup,
 } from './styles.css';
 import Box from '../Box';
+import { Sprinkles } from '../../styles/sprinkles.css';
 
 type AccordionContextType = {
   allowMultiple?: boolean;
@@ -22,16 +23,16 @@ const AccordionContext = createContext<AccordionContextType>({
   toggleItem: () => {},
 });
 
-type AccordionProps = {
-  children: React.ReactNode;
-  allowMultiple?: boolean;
-  className?: string;
-};
+type AccordionProps = React.HTMLAttributes<HTMLDivElement> &
+  Sprinkles & {
+    children: React.ReactNode;
+    allowMultiple?: boolean;
+  };
 
 const Accordion = ({
   children,
   allowMultiple = false,
-  className,
+  ...props
 }: AccordionProps) => {
   const [expandedItems, setExpandedItems] = useState<Set<string>>(new Set());
 
@@ -52,10 +53,13 @@ const Accordion = ({
   };
 
   return (
-    <AccordionContext.Provider value={{ allowMultiple, expandedItems, toggleItem }}>
+    <AccordionContext.Provider
+      value={{ allowMultiple, expandedItems, toggleItem }}
+    >
       <Box
-        className={clsx(accordionGroup, className)}
+        className={clsx(accordionGroup, props.className)}
         width="100%"
+        {...props}
       >
         {children}
       </Box>
@@ -63,18 +67,18 @@ const Accordion = ({
   );
 };
 
-type AccordionItemProps = {
-  value: string;
-  title: string;
-  children: React.ReactNode;
-  className?: string;
-};
+type AccordionItemProps = React.HTMLAttributes<HTMLDivElement> &
+  Sprinkles & {
+    value: string;
+    title: string;
+    children: React.ReactNode;
+  };
 
 const AccordionItem = ({
   value,
   title,
   children,
-  className,
+  ...props
 }: AccordionItemProps) => {
   const { expandedItems, toggleItem } = useContext(AccordionContext);
   const isExpanded = expandedItems.has(value);
@@ -86,12 +90,13 @@ const AccordionItem = ({
   return (
     <Box
       as="div"
-      className={clsx(accordionItem, className)}
+      className={clsx(accordionItem, props.className)}
       width="100%"
       marginBottom="small"
       border="small"
       borderRadius="large"
       overflow="hidden"
+      {...props}
     >
       <Box
         as="button"

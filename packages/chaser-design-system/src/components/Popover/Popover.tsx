@@ -14,23 +14,33 @@ import {
   popoverFooter,
 } from './styles.css';
 import Box from '../Box';
+import { Sprinkles } from '../../styles/sprinkles.css';
 
-export type PopoverPosition = 'top' | 'bottom' | 'left' | 'right' | 'topLeft' | 'topRight' | 'bottomLeft' | 'bottomRight';
+export type PopoverPosition =
+  | 'top'
+  | 'bottom'
+  | 'left'
+  | 'right'
+  | 'topLeft'
+  | 'topRight'
+  | 'bottomLeft'
+  | 'bottomRight';
 export type PopoverTriggerType = 'click' | 'hover';
 
-export interface PopoverProps extends React.HTMLAttributes<HTMLDivElement> {
-  trigger: React.ReactNode;
-  children: React.ReactNode;
-  position?: PopoverPosition;
-  title?: string;
-  footer?: React.ReactNode;
-  showArrow?: boolean;
-  triggerType?: PopoverTriggerType;
-  closeOnClickOutside?: boolean;
-  closeOnEscape?: boolean;
-  defaultOpen?: boolean;
-  onOpenChange?: (isOpen: boolean) => void;
-}
+export type PopoverProps = React.HTMLAttributes<HTMLDivElement> &
+  Sprinkles & {
+    trigger: React.ReactNode;
+    children: React.ReactNode;
+    position?: PopoverPosition;
+    title?: string;
+    footer?: React.ReactNode;
+    showArrow?: boolean;
+    triggerType?: PopoverTriggerType;
+    closeOnClickOutside?: boolean;
+    closeOnEscape?: boolean;
+    defaultOpen?: boolean;
+    onOpenChange?: (isOpen: boolean) => void;
+  };
 
 const Popover = ({
   trigger,
@@ -58,7 +68,10 @@ const Popover = ({
     if (!closeOnClickOutside) return;
 
     const handleClickOutside = (event: MouseEvent) => {
-      if (containerRef.current && !containerRef.current.contains(event.target as Node)) {
+      if (
+        containerRef.current &&
+        !containerRef.current.contains(event.target as Node)
+      ) {
         setIsOpen(false);
       }
     };
@@ -118,7 +131,7 @@ const Popover = ({
       >
         {trigger}
       </Box>
-      
+
       {isOpen && (
         <Box
           className={clsx(popoverContent, popoverPositionVariants[position])}
@@ -128,10 +141,13 @@ const Popover = ({
           {showArrow && (
             <Box
               as="span"
-              className={clsx(popoverArrow, popoverArrowPositionVariants[position])}
+              className={clsx(
+                popoverArrow,
+                popoverArrowPositionVariants[position],
+              )}
             />
           )}
-          
+
           {(title || triggerType === 'click') && (
             <Box as="div" className={popoverHeader}>
               {title && (
@@ -152,11 +168,11 @@ const Popover = ({
               )}
             </Box>
           )}
-          
+
           <Box as="div" className={popoverBody}>
             {children}
           </Box>
-          
+
           {footer && (
             <Box as="div" className={popoverFooter}>
               {footer}

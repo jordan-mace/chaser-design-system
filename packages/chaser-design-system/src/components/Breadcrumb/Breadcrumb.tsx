@@ -9,6 +9,7 @@ import {
   breadcrumbCurrent,
 } from './styles.css';
 import Box from '../Box';
+import { Sprinkles } from '../../styles/sprinkles.css';
 
 type BreadcrumbItem = {
   label: string;
@@ -16,17 +17,13 @@ type BreadcrumbItem = {
   current?: boolean;
 };
 
-type BreadcrumbProps = {
-  items: BreadcrumbItem[];
-  className?: string;
-  separator?: string;
-};
+type BreadcrumbProps = React.HTMLAttributes<HTMLDivElement> &
+  Sprinkles & {
+    items: BreadcrumbItem[];
+    separator?: string;
+  };
 
-const Breadcrumb = ({
-  items,
-  className,
-  separator = '/',
-}: BreadcrumbProps) => {
+const Breadcrumb = ({ items, className, separator = '/' }: BreadcrumbProps) => {
   return (
     <Box
       as="nav"

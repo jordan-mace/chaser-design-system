@@ -10,10 +10,11 @@ import {
 } from './styles.css';
 import React, { useEffect, useRef } from 'react';
 import Box from '../Box';
+import { Sprinkles } from '../../styles/sprinkles.css';
 
 export type ModalSize = 'small' | 'medium' | 'large' | 'full';
 
-export interface ModalProps extends React.HTMLAttributes<HTMLDialogElement> {
+type ModalPropsType = React.HTMLAttributes<HTMLDialogElement> & {
   isOpen: boolean;
   onClose: () => void;
   title?: string;
@@ -21,7 +22,9 @@ export interface ModalProps extends React.HTMLAttributes<HTMLDialogElement> {
   children?: React.ReactNode;
   footer?: React.ReactNode;
   showCloseButton?: boolean;
-}
+};
+
+export type ModalProps = ModalPropsType & Sprinkles;
 
 interface DialogMethods {
   showModal: () => void;
@@ -84,7 +87,9 @@ const Modal = ({
     >
       {title && (
         <Box as="div" className={modalHeader}>
-          <Box as="h2" className={modalTitle}>{title}</Box>
+          <Box as="h2" className={modalTitle}>
+            {title}
+          </Box>
           {showCloseButton && (
             <Box
               as="button"
@@ -99,9 +104,15 @@ const Modal = ({
         </Box>
       )}
 
-      <Box as="div" className={modalBody}>{children}</Box>
+      <Box as="div" className={modalBody}>
+        {children}
+      </Box>
 
-      {footer && <Box as="div" className={modalFooter}>{footer}</Box>}
+      {footer && (
+        <Box as="div" className={modalFooter}>
+          {footer}
+        </Box>
+      )}
     </Box>
   );
 };

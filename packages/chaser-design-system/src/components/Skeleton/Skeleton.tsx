@@ -7,19 +7,21 @@ import {
   skeletonAnimation,
 } from './styles.css';
 import Box from '../Box';
+import { Sprinkles } from '../../styles/sprinkles.css';
 
 export type SkeletonVariant = 'text' | 'circle' | 'rectangle';
 export type SkeletonSize = 'small' | 'medium' | 'large';
 export type SkeletonAnimation = 'shimmer' | 'pulse' | 'none';
 
-export interface SkeletonProps extends React.HTMLAttributes<HTMLDivElement> {
-  variant?: SkeletonVariant;
-  size?: SkeletonSize;
-  animation?: SkeletonAnimation;
-  width?: string | number;
-  height?: string | number;
-  count?: number;
-}
+export type SkeletonProps = React.HTMLAttributes<HTMLDivElement> &
+  Sprinkles & {
+    variant?: SkeletonVariant;
+    size?: SkeletonSize;
+    animation?: SkeletonAnimation;
+    width?: string | number;
+    height?: string | number;
+    count?: number;
+  };
 
 const Skeleton = ({
   variant = 'text',
@@ -54,11 +56,7 @@ const Skeleton = ({
   ));
 
   return (
-    <Box
-      display="flex"
-      flexDirection="column"
-      gap="small"
-    >
+    <Box display="flex" flexDirection="column" gap="small">
       {skeletons}
     </Box>
   );

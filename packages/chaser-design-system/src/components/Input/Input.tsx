@@ -3,11 +3,13 @@ import React from 'react';
 import { inputStyle, label } from './styles.css';
 import { text } from '../Text/styles.css';
 import Box from '../Box';
+import { Sprinkles } from '../../styles/sprinkles.css';
 
-export type InputProps = React.InputHTMLAttributes<HTMLInputElement> & {
-  label?: string;
-  fullWidth?: boolean;
-};
+export type InputProps = React.InputHTMLAttributes<HTMLInputElement> &
+  Sprinkles & {
+    label?: string;
+    fullWidth?: boolean;
+  };
 
 const Input = (props: InputProps) => {
   return (
@@ -19,10 +21,7 @@ const Input = (props: InputProps) => {
       {props.label && (
         <Box
           as="label"
-          className={clsx(
-            text,
-            label,
-          )}
+          className={clsx(text, label)}
           marginX={{ mobile: 'auto', tablet: 'none' }}
           marginY={{ mobile: 'none', tablet: 'auto' }}
           htmlFor={props.id}

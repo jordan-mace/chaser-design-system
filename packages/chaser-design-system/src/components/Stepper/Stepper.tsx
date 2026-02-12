@@ -17,6 +17,7 @@ import {
   stepConnectorVertical,
 } from './styles.css';
 import Box from '../Box';
+import { Sprinkles } from '../../styles/sprinkles.css';
 
 export type StepperOrientation = 'horizontal' | 'vertical';
 export type StepStatus = 'pending' | 'current' | 'completed';
@@ -27,14 +28,15 @@ export interface Step {
   status?: StepStatus;
 }
 
-export interface StepperProps extends React.HTMLAttributes<HTMLDivElement> {
-  steps: Step[];
-  currentStep?: number;
-  orientation?: StepperOrientation;
-  showConnectors?: boolean;
-  onStepClick?: (stepIndex: number) => void;
-  clickable?: boolean;
-}
+export type StepperProps = React.HTMLAttributes<HTMLDivElement> &
+  Sprinkles & {
+    steps: Step[];
+    currentStep?: number;
+    orientation?: StepperOrientation;
+    showConnectors?: boolean;
+    onStepClick?: (stepIndex: number) => void;
+    clickable?: boolean;
+  };
 
 const Stepper = ({
   steps,
@@ -73,7 +75,7 @@ const Stepper = ({
         const status = stepItem.status || getStepStatus(index);
         const isLast = index === steps.length - 1;
         const isCompleted = status === 'completed';
-        
+
         return (
           <Box
             key={index}
@@ -83,11 +85,14 @@ const Stepper = ({
           >
             {showConnectors && !isLast && orientation === 'horizontal' && (
               <Box
-                className={clsx(stepConnector, isCompleted && stepConnectorCompleted)}
+                className={clsx(
+                  stepConnector,
+                  isCompleted && stepConnectorCompleted,
+                )}
                 aria-hidden="true"
               />
             )}
-            
+
             {showConnectors && !isLast && orientation === 'vertical' && (
               <Box
                 className={stepConnectorVertical}
@@ -95,19 +100,16 @@ const Stepper = ({
                 aria-hidden="true"
               />
             )}
-            
+
             <Box
-              className={clsx(
-                stepIndicator,
-                stepIndicatorVariants[status],
-              )}
+              className={clsx(stepIndicator, stepIndicatorVariants[status])}
               onClick={() => handleStepClick(index)}
               style={{ cursor: clickable ? 'pointer' : 'default' }}
               aria-label={`Step ${index + 1}: ${stepItem.title}`}
             >
               {status === 'completed' ? '✓' : index + 1}
             </Box>
-            
+
             <Box
               className={clsx(
                 stepContent,

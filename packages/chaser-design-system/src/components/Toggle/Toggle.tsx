@@ -15,15 +15,20 @@ import {
 } from './styles.css';
 import React, { useState, useId } from 'react';
 import Box from '../Box';
+import { Sprinkles } from '../../styles/sprinkles.css';
 
 export type ToggleSize = 'small' | 'medium' | 'large';
 
-export interface ToggleProps extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'size' | 'checked' | 'onChange'> {
-  checked?: boolean;
-  onChange?: (checked: boolean) => void;
-  size?: ToggleSize;
-  label?: string;
-}
+export type ToggleProps = Omit<
+  React.InputHTMLAttributes<HTMLInputElement>,
+  'size' | 'checked' | 'onChange'
+> &
+  Sprinkles & {
+    checked?: boolean;
+    onChange?: (checked: boolean) => void;
+    size?: ToggleSize;
+    label?: string;
+  };
 
 const Toggle = ({
   checked = false,
@@ -86,7 +91,11 @@ const Toggle = ({
           aria-hidden="true"
         />
       </Box>
-      {label && <Box as="span" marginLeft="small">{label}</Box>}
+      {label && (
+        <Box as="span" marginLeft="small">
+          {label}
+        </Box>
+      )}
     </Box>
   );
 };

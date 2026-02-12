@@ -1,17 +1,16 @@
 import React from 'react';
 import { visuallyHidden } from './styles.css';
+import { Sprinkles } from '../../styles/sprinkles.css';
 
-export interface VisuallyHiddenProps {
+export type VisuallyHiddenProps = Sprinkles & {
   children: React.ReactNode;
   as?: React.ElementType;
-  className?: string;
-}
+};
 
-const VisuallyHidden = ({ 
-  children, 
+const VisuallyHidden = ({
+  children,
   as: Component = 'span',
-  className,
-  ...props 
+  ...props
 }: VisuallyHiddenProps) => {
   return React.createElement(
     Component as React.ElementType,
@@ -19,7 +18,7 @@ const VisuallyHidden = ({
       className: visuallyHidden,
       ...props,
     },
-    children
+    children,
   );
 };
 

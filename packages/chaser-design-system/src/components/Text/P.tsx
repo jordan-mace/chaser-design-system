@@ -2,11 +2,12 @@ import clsx from 'clsx';
 import { text } from './styles.css';
 import React from 'react';
 import Box from '../Box';
+import { Sprinkles } from '../../styles/sprinkles.css';
 
-type PProps = React.HTMLAttributes<HTMLParagraphElement> & {
-  children: React.ReactNode;
-  className?: string;
-};
+type PProps = React.HTMLAttributes<HTMLParagraphElement> &
+  Sprinkles & {
+    children: React.ReactNode;
+  };
 
 const P = (props: PProps) => {
   return (

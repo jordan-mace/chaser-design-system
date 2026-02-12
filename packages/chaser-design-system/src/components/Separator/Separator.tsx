@@ -1,18 +1,16 @@
 import clsx from 'clsx';
 import React from 'react';
-import {
-  separator,
-  separatorOrientation,
-} from './styles.css';
+import { separator, separatorOrientation } from './styles.css';
 import Box from '../Box';
+import { Sprinkles } from '../../styles/sprinkles.css';
 
 export type SeparatorOrientation = 'horizontal' | 'vertical';
 
-export interface SeparatorProps {
-  orientation?: SeparatorOrientation;
-  decorative?: boolean;
-  className?: string;
-}
+export type SeparatorProps = React.HTMLAttributes<HTMLHRElement> &
+  Sprinkles & {
+    orientation?: SeparatorOrientation;
+    decorative?: boolean;
+  };
 
 const Separator = ({
   orientation = 'horizontal',
@@ -23,11 +21,7 @@ const Separator = ({
   return (
     <Box
       as="hr"
-      className={clsx(
-        separator,
-        separatorOrientation[orientation],
-        className,
-      )}
+      className={clsx(separator, separatorOrientation[orientation], className)}
       aria-hidden={decorative}
       {...props}
     />

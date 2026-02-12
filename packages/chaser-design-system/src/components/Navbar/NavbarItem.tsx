@@ -2,8 +2,9 @@ import clsx from 'clsx';
 import React from 'react';
 import { navbarItemStyle } from './styles.css';
 import Box from '../Box';
+import { Sprinkles } from '../../styles/sprinkles.css';
 
-type NavbarItemProps = React.HTMLAttributes<HTMLDivElement> & {
+type NavbarItemProps = React.HTMLAttributes<HTMLDivElement> & Sprinkles & {
   children?: React.ReactNode;
 };
 

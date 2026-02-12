@@ -9,6 +9,7 @@ import {
   tabContent,
 } from './styles.css';
 import Box from '../Box';
+import { Sprinkles } from '../../styles/sprinkles.css';
 
 type TabsContextType = {
   activeTab: string;
@@ -21,20 +22,21 @@ const TabsContext = createContext<TabsContextType>({
   setActiveTab: () => {},
 });
 
-type TabsProps = {
-  children: React.ReactNode;
-  defaultValue?: string;
-  orientation?: 'horizontal' | 'vertical';
-  className?: string;
-  onChange?: (value: string) => void;
-};
+type TabsProps = React.HTMLAttributes<HTMLDivElement> &
+  Sprinkles & {
+    children: React.ReactNode;
+    defaultValue?: string;
+    orientation?: 'horizontal' | 'vertical';
+    onChange?: (value: string) => void;
+  };
 
 const Tabs = ({
   children,
   defaultValue = '',
   orientation = 'horizontal',
-  className,
   onChange,
+  className,
+  ...props
 }: TabsProps) => {
   const [activeTab, setActiveTab] = useState(defaultValue);
 
@@ -46,8 +48,10 @@ const Tabs = ({
   };
 
   return (
-    <TabsContext.Provider value={{ activeTab, setActiveTab: handleTabChange, orientation }}>
-      <Box className={clsx(tabsContainer, className)} width="100%">
+    <TabsContext.Provider
+      value={{ activeTab, setActiveTab: handleTabChange, orientation }}
+    >
+      <Box className={clsx(tabsContainer, className)} width="100%" {...props}>
         {children}
       </Box>
     </TabsContext.Provider>

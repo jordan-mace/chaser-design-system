@@ -7,13 +7,15 @@ import {
 } from './styles.css';
 import React from 'react';
 import Box from '../Box';
+import { Sprinkles } from '../../styles/sprinkles.css';
 
-type AlertProps = React.HTMLAttributes<HTMLDivElement> & {
-  severity?: 'success' | 'warning' | 'error' | 'info';
-  dismissible?: boolean;
-  onDismiss?: () => void;
-  children?: React.ReactNode;
-};
+type AlertProps = React.HTMLAttributes<HTMLDivElement> &
+  Sprinkles & {
+    severity?: 'success' | 'warning' | 'error' | 'info';
+    dismissible?: boolean;
+    onDismiss?: () => void;
+    children?: React.ReactNode;
+  };
 
 const Alert = ({
   severity = 'info',
@@ -29,7 +31,9 @@ const Alert = ({
       className={clsx(alert, alertVariants[severity], props.className)}
       {...props}
     >
-      <Box as="div" className={alertContent}>{children}</Box>
+      <Box as="div" className={alertContent}>
+        {children}
+      </Box>
       {dismissible && onDismiss && (
         <Box
           as="button"

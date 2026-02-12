@@ -1,20 +1,24 @@
 import clsx from 'clsx';
-import {
-  spinner,
-  spinnerColors,
-  spinnerSizes,
-} from './styles.css';
+import { spinner, spinnerColors, spinnerSizes } from './styles.css';
 import React from 'react';
 import Box from '../Box';
+import { Sprinkles } from '../../styles/sprinkles.css';
 
-export type SpinnerColor = 'primary' | 'secondary' | 'success' | 'warning' | 'error' | 'info';
+export type SpinnerColor =
+  | 'primary'
+  | 'secondary'
+  | 'success'
+  | 'warning'
+  | 'error'
+  | 'info';
 export type SpinnerSize = 'small' | 'medium' | 'large';
 
-export interface SpinnerProps extends React.HTMLAttributes<HTMLDivElement> {
-  color?: SpinnerColor;
-  size?: SpinnerSize;
-  role?: string;
-}
+export type SpinnerProps = React.HTMLAttributes<HTMLDivElement> &
+  Sprinkles & {
+    color?: SpinnerColor;
+    size?: SpinnerSize;
+    role?: string;
+  };
 
 const Spinner = ({
   color = 'primary',

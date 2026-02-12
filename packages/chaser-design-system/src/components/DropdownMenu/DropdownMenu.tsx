@@ -12,8 +12,13 @@ import {
   dropdownMenuLabel,
 } from './styles.css';
 import Box from '../Box';
+import { Sprinkles } from '../../styles/sprinkles.css';
 
-export type DropdownMenuPosition = 'bottomLeft' | 'bottomRight' | 'topLeft' | 'topRight';
+export type DropdownMenuPosition =
+  | 'bottomLeft'
+  | 'bottomRight'
+  | 'topLeft'
+  | 'topRight';
 export type DropdownMenuItemVariant = 'default' | 'destructive' | 'disabled';
 
 export interface DropdownMenuItemProps {
@@ -29,13 +34,14 @@ export interface DropdownMenuGroupProps {
   items: DropdownMenuItemProps[];
 }
 
-export interface DropdownMenuProps extends React.HTMLAttributes<HTMLDivElement> {
-  trigger: React.ReactNode;
-  items?: DropdownMenuItemProps[];
-  groups?: DropdownMenuGroupProps[];
-  position?: DropdownMenuPosition;
-  closeOnItemClick?: boolean;
-}
+export type DropdownMenuProps = React.HTMLAttributes<HTMLDivElement> &
+  Sprinkles & {
+    trigger: React.ReactNode;
+    items?: DropdownMenuItemProps[];
+    groups?: DropdownMenuGroupProps[];
+    position?: DropdownMenuPosition;
+    closeOnItemClick?: boolean;
+  };
 
 const DropdownMenu = ({
   trigger,
@@ -51,7 +57,10 @@ const DropdownMenu = ({
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      if (containerRef.current && !containerRef.current.contains(event.target as Node)) {
+      if (
+        containerRef.current &&
+        !containerRef.current.contains(event.target as Node)
+      ) {
         setIsOpen(false);
       }
     };
@@ -78,7 +87,7 @@ const DropdownMenu = ({
 
   const handleItemClick = (item: DropdownMenuItemProps) => {
     if (item.disabled || item.variant === 'disabled') return;
-    
+
     item.onClick?.();
     if (closeOnItemClick) {
       setIsOpen(false);
@@ -91,7 +100,11 @@ const DropdownMenu = ({
       as="button"
       className={clsx(
         dropdownMenuItem,
-        dropdownMenuItemVariants[item.disabled || item.variant === 'disabled' ? 'disabled' : item.variant || 'default'],
+        dropdownMenuItemVariants[
+          item.disabled || item.variant === 'disabled'
+            ? 'disabled'
+            : item.variant || 'default'
+        ],
       )}
       onClick={() => handleItemClick(item)}
       disabled={item.disabled || item.variant === 'disabled'}
@@ -128,10 +141,13 @@ const DropdownMenu = ({
       >
         {trigger}
       </Box>
-      
+
       {isOpen && (
         <Box
-          className={clsx(dropdownMenuContent, dropdownMenuPositionVariants[position])}
+          className={clsx(
+            dropdownMenuContent,
+            dropdownMenuPositionVariants[position],
+          )}
           role="menu"
           aria-orientation="vertical"
         >
@@ -140,10 +156,16 @@ const DropdownMenu = ({
               {items.map((item, index) => renderItem(item, index))}
             </Box>
           )}
-          
+
           {groups.map((group, index) => (
             <React.Fragment key={index}>
-              {index > 0 && <Box as="div" className={dropdownMenuSeparator} role="separator" />}
+              {index > 0 && (
+                <Box
+                  as="div"
+                  className={dropdownMenuSeparator}
+                  role="separator"
+                />
+              )}
               {renderGroup(group, index)}
             </React.Fragment>
           ))}

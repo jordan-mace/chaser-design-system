@@ -8,6 +8,7 @@ import {
   radioGroupHorizontal,
 } from './styles.css';
 import Box from '../Box';
+import { Sprinkles } from '../../styles/sprinkles.css';
 
 type RadioContextType = {
   name?: string;
@@ -20,17 +21,18 @@ const RadioContext = createContext<RadioContextType>({});
 type RadioProps = Omit<
   React.InputHTMLAttributes<HTMLInputElement>,
   'type' | 'value' | 'onChange'
-> & {
-  label?: string;
-  value: string;
-};
+> &
+  Sprinkles & {
+    label?: string;
+    value: string;
+  };
 
 const Radio = forwardRef<HTMLInputElement, RadioProps>(
   ({ label, className, value, ...props }, ref) => {
     const context = useContext(RadioContext);
     const name = context.name || props.name;
     const isChecked = context.value === value;
-    
+
     const handleChange = () => {
       if (context.onChange) {
         context.onChange(value);
@@ -58,7 +60,11 @@ const Radio = forwardRef<HTMLInputElement, RadioProps>(
           className={radioInput}
           {...props}
         />
-        {label && <Box as="span" className={radioLabel}>{label}</Box>}
+        {label && (
+          <Box as="span" className={radioLabel}>
+            {label}
+          </Box>
+        )}
       </Box>
     );
   },

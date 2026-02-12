@@ -6,17 +6,18 @@ import {
   collapseAnimation,
 } from './styles.css';
 import Box from '../Box';
+import { Sprinkles } from '../../styles/sprinkles.css';
 
 export type CollapseAnimation = 'height' | 'opacity' | 'both';
 
-export interface CollapseProps {
-  isOpen: boolean;
-  children: React.ReactNode;
-  animation?: CollapseAnimation;
-  duration?: number;
-  className?: string;
-  onAnimationEnd?: () => void;
-}
+export type CollapseProps = React.HTMLAttributes<HTMLDivElement> &
+  Sprinkles & {
+    isOpen: boolean;
+    children: React.ReactNode;
+    animation?: CollapseAnimation;
+    duration?: number;
+    onAnimationEnd?: () => void;
+  };
 
 const Collapse = ({
   isOpen,
@@ -26,7 +27,9 @@ const Collapse = ({
   className,
   onAnimationEnd,
 }: CollapseProps) => {
-  const [height, setHeight] = useState<number | undefined>(isOpen ? undefined : 0);
+  const [height, setHeight] = useState<number | undefined>(
+    isOpen ? undefined : 0,
+  );
   const [isAnimating, setIsAnimating] = useState(false);
   const contentRef = useRef<HTMLDivElement>(null);
 
