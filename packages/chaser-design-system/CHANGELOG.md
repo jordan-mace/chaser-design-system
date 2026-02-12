@@ -1,5 +1,11 @@
 # @jordan-mace/chaser-design-system
 
+## 1.2.9
+
+### Patch Changes
+
+- aabb531: fix: reset was not exporting correctly
+
 ## 1.2.8
 
 ### Patch Changes
