@@ -1,5 +1,6 @@
 import '@jordan-mace/chaser-design-system/layers.css';
-import '@jordan-mace/chaser-design-system/cssReset.css';
+import '@jordan-mace/chaser-design-system/reset.css';
+import '@jordan-mace/chaser-design-system/theme.css';
 import { Button } from '@jordan-mace/chaser-design-system';
 
 const App = () => {

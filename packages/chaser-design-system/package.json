@@ -2,43 +2,31 @@
   "name": "@jordan-mace/chaser-design-system",
   "version": "1.2.9",
   "type": "module",
-  "sideEffects": [
-    "*.css.mjs",
-    "*.css.js"
-  ],
+  "style": "./dist/index.css",
+  "sideEffects": true,
   "repository": {
     "type": "git",
     "url": "git+https://github.com/jordan-mace/chaser-design-system.git"
   },
   "exports": {
     ".": {
-      "types": "./dist/index.d.mts",
-      "import": "./dist/index.mjs"
+      "import": "./dist/index.mjs",
+      "style": "./dist/index.css"
     },
-    "./layers.css": {
-      "types": "./dist/styles/layers.css.d.mts",
-      "import": "./dist/styles/layers.css.mjs"
-    },
-    "./reset.css": {
-      "types": "./dist/styles/reset.css.d.mts",
-      "import": "./dist/styles/reset.css.mjs"
-    },
-    "./theme.css": {
-      "types": "./dist/styles/theme.css.d.mts",
-      "import": "./dist/styles/theme.css.mjs"
-    },
-    "./sprinkles.css": {
-      "types": "./dist/styles/sprinkles.css.d.mts",
-      "import": "./dist/styles/sprinkles.css.mjs"
-    }
+    "./index.css": "./dist/index.css",
+    "./components.css": "./dist/components/index.css",
+    "./layers.css": "./dist/styles/layers.css",
+    "./reset.css": "./dist/styles/reset.css",
+    "./theme.css": "./dist/styles/theme.css",
+    "./sprinkles.css": "./dist/styles/sprinkles.css"
   },
   "files": [
     "dist",
     "src"
   ],
   "scripts": {
-    "build": "tsdown src/index.ts src/styles/layers.css.ts src/styles/reset.css.ts src/styles/theme.css.ts src/styles/sprinkles.css.ts --format esm --dts --clean",
-    "dev": "tsdown src/index.ts src/styles/layers.css.ts src/styles/reset.css.ts src/styles/theme.css.ts src/styles/sprinkles.css.ts --format esm --dts --watch",
+    "build": "node build.mjs",
+    "dev": "node build.mjs --watch",
     "format": "prettier --write .",
     "lint": "eslint .",
     "test": "vitest --config=vitest.browser.config.ts",
@@ -70,6 +58,7 @@
     "esbuild": "^0.27.3",
     "eslint": "^9.39.0",
     "eslint-plugin-storybook": "^10.0.8",
+    "glob": "^13.0.2",
     "globals": "^16.4.0",
     "mini-css-extract-plugin": "^2.9.4",
     "playwright": "^1.58.0",

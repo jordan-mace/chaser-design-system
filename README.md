@@ -4,13 +4,14 @@ A modern, type-safe React component library built with [Vanilla Extract](https:/
 
 ## Features
 
-✨ **Zero-runtime CSS-in-JS** with Vanilla Extract  
-🎨 **Consistent Design Tokens** with theme variables  
-📱 **Responsive Design** with built-in breakpoints  
-🔧 **TypeScript Support** with full type safety  
-⚡ **Tree-shakeable** components  
-🧪 **Thoroughly Tested** with Vitest and browser testing  
-📚 **Storybook Documentation** included
+- **Zero-runtime CSS-in-JS** with Vanilla Extract
+- **Auto-imported CSS** - styles load automatically with components
+- **Consistent Design Tokens** with theme variables
+- **Responsive Design** with built-in breakpoints
+- **TypeScript Support** with full type safety
+- **Tree-shakeable** components
+- **Thoroughly Tested** with Vitest and browser testing
+- **Storybook Documentation** included
 
 ## Installation
 
@@ -27,129 +28,17 @@ pnpm add @jordan-mace/chaser-design-system
 Make sure you have the following peer dependencies installed:
 
 ```bash
-npm install @vanilla-extract/css @vanilla-extract/sprinkles clsx react react-dom
+npm install react react-dom clsx
 ```
 
 ## Quick Start
 
-### 1. Import CSS Layers and Reset
-
-First, import the required CSS files in your application entry point:
-
-```typescript
-import "@jordan-mace/chaser-design-system/layers.css";
-import "@jordan-mace/chaser-design-system/cssReset.css";
-```
-
-### 2. Wrap App with ToastProvider
-
-Wrap your application with ToastProvider to enable toast notifications:
-
-```typescript
-import { ToastProvider } from "@jordan-mace/chaser-design-system";
-
-function App() {
-  return (
-    <ToastProvider>
-      {/* Your app components */}
-    </ToastProvider>
-  );
-}
-```
-
-### 3. Use Toast Hook in Components
-
-Import and use the useToast hook to trigger toasts:
-
-```typescript
-import { useToast } from "@jordan-mace/chaser-design-system";
-
-const MyComponent = () => {
-  const { toast, success, error, warning, info, dismiss, dismissAll } = useToast();
-  
-  return (
-    <div>
-      <button onClick={() => toast.success('Operation completed!')}>
-        Show Success Toast
-      </button>
-      <button onClick={() => toast.error('Something went wrong!')}>
-        Show Error Toast
-      </button>
-      <button onClick={() => toast.warning('Session expiring soon!')}>
-        Show Warning Toast
-      </button>
-      <button onClick={() => info('You have new notifications!')}>
-        Show Info Toast
-      </button>
-      <button onClick={dismiss}>
-        Dismiss All
-      </button>
-    </div>
-  );
-};
-```
-
-## Toast Provider Props
-
-```typescript
-interface ToastProviderProps {
-  children: React.ReactNode;
-  position?: 'top-left' | 'top-center' | 'top-right' | 'bottom-left' | 'bottom-center' | 'bottom-right'; // default: 'top-right'
-  maxVisible?: number;              // Maximum toasts visible at once (default: 5)
-  stacking?: 'stack' | 'replace';    // 'stack' = accumulate, 'replace' = replace previous (default: 'stack')
-}
-```
-
-## Toast Hook API
-
-```typescript
-const { 
-  toast,      // (message: string, options?: ToastOptions) => string - returns toast ID
-  success,   // (message: string, options?: ToastOptions) => string
-  error,     // (message: string, options?: ToastOptions) => string
-  warning,   // (message: string, options?: ToastOptions) => string
-  info,      // (message: string, options?: ToastOptions) => string
-  dismiss,    // (id: string) => void - dismiss toast by ID
-  dismissAll  // () => void - dismiss all toasts
-} = useToast();
-```
-
-## Toast Options
-
-```typescript
-interface ToastOptions {
-  duration?: number;      // Auto-dismiss duration in ms (default: 5000)
-  closable?: boolean;     // Show close button (default: true)
-  position?: ToastPosition; // Override default position
-  onClose?: () => void;    // Callback when toast closes
-}
-```
-
-### Peer Dependencies
-
-Make sure you have the following peer dependencies installed:
-
-```bash
-npm install @vanilla-extract/css @vanilla-extract/sprinkles clsx react react-dom
-```
-
-## Quick Start
-
-### 1. Import CSS Layers and Reset
-
-First, import the required CSS files in your application entry point:
-
-```typescript
-import "@jordan-mace/chaser-design-system/layers.css";
-import "@jordan-mace/chaser-design-system/cssReset.css";
-```
-
-### 2. Use Components
+CSS is automatically imported when you import components. No manual CSS imports required.
 
 ```typescript
 import { Button, Input, Form } from "@jordan-mace/chaser-design-system";
 
-const App = () => {
+function App() {
   return (
     <Form>
       <Input
@@ -166,16 +55,81 @@ const App = () => {
       />
     </Form>
   );
-};
+}
 
 export default App;
+```
+
+## Toast System
+
+### Wrap App with ToastProvider
+
+```typescript
+import { ToastProvider } from "@jordan-mace/chaser-design-system";
+
+function App() {
+  return (
+    <ToastProvider>
+      {/* Your app components */}
+    </ToastProvider>
+  );
+}
+```
+
+### Use Toast Hook in Components
+
+```typescript
+import { useToast } from "@jordan-mace/chaser-design-system";
+
+const MyComponent = () => {
+  const { toast, dismiss, dismissAll } = useToast();
+  
+  return (
+    <div>
+      <button onClick={() => toast.success('Operation completed!')}>
+        Show Success Toast
+      </button>
+      <button onClick={() => toast.error('Something went wrong!')}>
+        Show Error Toast
+      </button>
+      <button onClick={() => toast.warning('Session expiring soon!')}>
+        Show Warning Toast
+      </button>
+      <button onClick={() => toast.info('You have new notifications!')}>
+        Show Info Toast
+      </button>
+      <button onClick={dismissAll}>
+        Dismiss All
+      </button>
+    </div>
+  );
+};
+```
+
+### Toast Provider Props
+
+```typescript
+interface ToastProviderProps {
+  children: React.ReactNode;
+  position?: 'top-left' | 'top-center' | 'top-right' | 'bottom-left' | 'bottom-center' | 'bottom-right';
+  maxVisible?: number;
+  stacking?: 'stack' | 'replace';
+}
+```
+
+### Toast Hook API
+
+```typescript
+const { 
+  toast,      // toast.success(), toast.error(), toast.warning(), toast.info()
+  dismiss,    // (id: string) => void
+  dismissAll  // () => void
+} = useToast();
 ```
 
 ## Components
 
 ### Button
-
-A versatile button component with multiple variants and states.
 
 ```typescript
 <Button
@@ -188,8 +142,6 @@ A versatile button component with multiple variants and states.
 
 ### Input
 
-A form input with optional labeling and responsive layout.
-
 ```typescript
 <Input
   label="Username"
@@ -201,33 +153,25 @@ A form input with optional labeling and responsive layout.
 
 ### Form
 
-A container component for form layouts.
-
 ```typescript
 <Form>{/* Form inputs and controls */}</Form>
 ```
 
 ### List & ListItem
 
-Components for displaying structured lists.
-
 ```typescript
 <List>
   <ListItem>Item 1</ListItem>
   <ListItem>Item 2</ListItem>
-  <ListItem>Item 3</ListItem>
 </List>
 ```
 
 ### Navbar & NavbarItem
 
-Navigation components for application headers.
-
 ```typescript
 <Navbar>
   <NavbarItem>Home</NavbarItem>
   <NavbarItem>About</NavbarItem>
-  <NavbarItem>Contact</NavbarItem>
 </Navbar>
 ```
 
@@ -253,25 +197,19 @@ const customStyle = style({
 });
 ```
 
-## Styling System
+## Advanced: Manual CSS Imports
 
-Chaser uses Vanilla Extract for styling, which provides:
-
-- **Type-safe styles** at build time
-- **Zero-runtime overhead**
-- **Automatic CSS extraction**
-- **Responsive utilities** via Sprinkles
-
-### Custom Styling
-
-You can extend components with additional classes:
+If you need granular control over CSS loading, individual stylesheets are available:
 
 ```typescript
-<Button
-  className={myCustomButtonStyle}
-  variant="primary"
-  label="Custom Button"
-/>
+// All styles (auto-imported with components)
+import "@jordan-mace/chaser-design-system/index.css";
+
+// Individual stylesheets
+import "@jordan-mace/chaser-design-system/reset.css";    // CSS reset
+import "@jordan-mace/chaser-design-system/theme.css";    // CSS variables
+import "@jordan-mace/chaser-design-system/sprinkles.css"; // Utility classes
+import "@jordan-mace/chaser-design-system/components.css"; // Component styles
 ```
 
 ## Development
@@ -286,58 +224,21 @@ You can extend components with additional classes:
 ### Available Scripts
 
 ```bash
-# Build the library
-pnpm build
-
-# Build in watch mode
-pnpm dev
-
-# Run tests
-pnpm test
-
-# Start Storybook
-pnpm storybook
-
-# Build Storybook
-pnpm build-storybook
-
-# Lint code
-pnpm lint
-
-# Format code
-pnpm format
+pnpm build          # Build the library
+pnpm dev            # Build in watch mode
+pnpm test           # Run tests
+pnpm storybook      # Start Storybook
+pnpm build-storybook # Build Storybook
+pnpm lint           # Lint code
+pnpm format         # Format code
 ```
-
-### Testing
-
-The library uses Vitest with browser testing for comprehensive component testing:
-
-```bash
-pnpm test
-```
-
-### Storybook
-
-Interactive component documentation is available via Storybook:
-
-```bash
-pnpm storybook
-```
-
-## Contributing
-
-1. Fork the repository
-2. Create a feature branch: `git checkout -b feature/new-component`
-3. Make your changes and add tests
-4. Ensure all tests pass: `pnpm test`
-5. Submit a pull request
-
-## License
-
-This project is licensed under the MIT License.
 
 ## Requirements
 
 - React 19.2.0+
 - Node.js 16+
-- Modern bundler with CSS support (Vite, Webpack, etc.)
+- Modern bundler with CSS support (Vite, Webpack, Next.js, etc.)
+
+## License
+
+MIT

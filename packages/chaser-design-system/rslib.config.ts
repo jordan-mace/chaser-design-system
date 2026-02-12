@@ -1,23 +1,29 @@
 import { defineConfig } from '@rslib/core';
 import { pluginReact } from '@rsbuild/plugin-react';
-import { VanillaExtractPlugin } from '@vanilla-extract/webpack-plugin';
 
 export default defineConfig({
   lib: [
     {
       format: 'esm',
       syntax: ['node 18'],
-      dts: true,
+      dts: false, // Disable for now due to TS error
       source: {
         entry: {
           index: 'src/index.ts',
         },
       },
-      bundle: false,
+      bundle: false, // Don't bundle - keep files separate
       output: {
         distPath: {
           root: './dist',
         },
+        filename: {
+          js: '[name].mjs',
+        },
+        // Copy .css.ts files as-is without transformation
+        copy: [
+          { from: 'src/**/*.css.ts', to: './' },
+        ],
       },
     },
   ],
@@ -30,19 +36,25 @@ export default defineConfig({
   ],
   tools: {
     rspack: {
-      plugins: [new VanillaExtractPlugin()],
+      externals: {
+        react: 'react',
+        'react-dom': 'react-dom',
+        clsx: 'clsx',
+        '@vanilla-extract/css': '@vanilla-extract/css',
+        '@vanilla-extract/sprinkles': '@vanilla-extract/sprinkles',
+      },
       module: {
         rules: [
           {
             test: /\.css\.ts$/,
-            use: [
-              {
-                loader: '@vanilla-extract/webpack-plugin/loader',
-              },
-            ],
+            type: 'asset/resource',
+            generator: {
+              filename: '[path][name][ext]',
+            },
           },
         ],
       },
     },
   },
 });
+
