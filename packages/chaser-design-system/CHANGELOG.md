@@ -1,5 +1,11 @@
 # @jordan-mace/chaser-design-system
 
+## 1.2.3
+
+### Patch Changes
+
+- 88228ec: Switch from rslib to tsdown for bundling. Export source .css.ts files to allow consumer's Vanilla Extract plugin to process styles at build time, fixing SSR compatibility issues.
+
 ## 1.2.2
 
 ### Patch Changes
