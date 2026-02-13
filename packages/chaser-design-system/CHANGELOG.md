@@ -1,5 +1,11 @@
 # @jordan-mace/chaser-design-system
 
+## 2.1.0
+
+### Minor Changes
+
+- a4473b0: Use vanilla-extract layer API for nested CSS layers
+
 ## 2.0.0
 
 ### Major Changes
