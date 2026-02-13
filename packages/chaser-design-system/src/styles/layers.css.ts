@@ -1,5 +1,6 @@
-import { layer } from '@vanilla-extract/css';
+import { globalLayer } from '@vanilla-extract/css';
 
-export const resetLayer = layer('reset');
-export const themeLayer = layer({ parent: resetLayer }, 'theme');
-export const componentsLayer = layer({ parent: themeLayer }, 'components');
+export const chaserLayer = globalLayer('chaser');
+export const resetLayer = globalLayer({ parent: chaserLayer }, 'reset');
+export const themeLayer = globalLayer({ parent: chaserLayer }, 'theme');
+export const componentsLayer = globalLayer({ parent: chaserLayer }, 'components');
