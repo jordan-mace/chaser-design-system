@@ -1,5 +1,11 @@
 # @jordan-mace/chaser-design-system
 
+## 2.1.2
+
+### Patch Changes
+
+- 24a26db: feat: Update spacing tokens to be more usable
+
 ## 2.1.1
 
 ### Patch Changes
