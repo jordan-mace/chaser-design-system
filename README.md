@@ -6,8 +6,9 @@ A modern, type-safe React component library built with [Vanilla Extract](https:/
 
 - **Zero-runtime CSS-in-JS** with Vanilla Extract
 - **Auto-imported CSS** - styles load automatically with components
+- **Dark Mode Support** - built-in light/dark theme switching
 - **Consistent Design Tokens** with theme variables
-- **Responsive Design** with built-in breakpoints
+- **Sprinkles Utility** - type-safe responsive styling
 - **TypeScript Support** with full type safety
 - **Tree-shakeable** components
 - **Thoroughly Tested** with Vitest and browser testing
@@ -181,20 +182,62 @@ Chaser includes a comprehensive design token system with:
 
 - **Colors**: Primary, secondary, and semantic color palettes
 - **Typography**: Inter for body text, Poppins for headings
-- **Spacing**: Consistent spacing scale
+- **Spacing**: Consistent spacing scale (`xsmall`, `small`, `medium`, `large`, `xlarge`)
 - **Border Radius**: Predefined radius values
 - **Breakpoints**: Mobile-first responsive design
 
 ### Accessing Theme Variables
 
 ```typescript
-import { vars } from "@jordan-mace/chaser-design-system/theme.css";
+import { vars } from "@jordan-mace/chaser-design-system";
 
 // Use theme variables in your custom styles
 const customStyle = style({
   color: vars.colors.textPrimary,
   fontFamily: vars.fontFamily.body,
 });
+```
+
+## Dark Mode
+
+Enable dark mode by adding the `darkTheme` class to a parent element (typically `<html>` or `<body>`):
+
+```typescript
+import { darkTheme, lightTheme } from "@jordan-mace/chaser-design-system";
+
+// Toggle dark mode
+document.documentElement.classList.remove(lightTheme);
+document.documentElement.classList.add(darkTheme);
+
+// Or use a React-based approach
+function ThemeToggle() {
+  const [isDark, setIsDark] = useState(false);
+  
+  useEffect(() => {
+    document.documentElement.className = isDark ? darkTheme : '';
+  }, [isDark]);
+  
+  return <button onClick={() => setIsDark(!isDark)}>Toggle Theme</button>;
+}
+```
+
+## Sprinkles Utility
+
+Use the type-safe `sprinkles` function for responsive styling:
+
+```typescript
+import { sprinkles, type Sprinkles } from "@jordan-mace/chaser-design-system";
+
+// Responsive styles with mobile-first breakpoints
+const containerStyle = sprinkles({
+  display: 'flex',
+  flexDirection: ['column', 'row'], // mobile: column, tablet+: row
+  padding: ['small', 'medium', 'large'], // mobile: small, tablet: medium, desktop: large
+  gap: 'small',
+});
+
+// Available spacing tokens
+// xsmall: 0.5rem, small: 1rem, medium: 2rem, large: 3rem, xlarge: 4rem
 ```
 
 ## Advanced: Manual CSS Imports
