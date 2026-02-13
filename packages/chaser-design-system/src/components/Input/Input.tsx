@@ -3,13 +3,7 @@ import React from 'react';
 import { inputStyle, label } from './styles.css';
 import { text } from '../Text/styles.css';
 import Box from '../Box';
-import { Sprinkles } from '../../styles/sprinkles.css';
-
-export type InputProps = React.InputHTMLAttributes<HTMLInputElement> &
-  Sprinkles & {
-    label?: string;
-    fullWidth?: boolean;
-  };
+import { type InputProps } from './Input.types';
 
 const Input = (props: InputProps) => {
   return (

@@ -8,15 +8,7 @@ import {
   emptyStateAction,
 } from './styles.css';
 import Box from '../Box';
-import { Sprinkles } from '../../styles/sprinkles.css';
-
-export type EmptyStateProps = React.HTMLAttributes<HTMLDivElement> &
-  Sprinkles & {
-    icon?: React.ReactNode;
-    title?: string;
-    description?: string;
-    action?: React.ReactNode;
-  };
+import { type EmptyStateProps } from './EmptyState.types';
 
 const EmptyState = ({
   icon,

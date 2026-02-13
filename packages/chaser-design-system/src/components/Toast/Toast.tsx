@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState, useEffect, useCallback, useRef, ReactNode } from 'react';
+import React, { createContext, useContext, useState, useEffect, useCallback, useRef } from 'react';
 import { createPortal } from 'react-dom';
 import clsx from 'clsx';
 import {
@@ -16,40 +16,16 @@ import {
   slideInRight,
 } from './styles.css';
 import { Icon } from '../Icon';
-
-export type ToastPosition =
-  | 'top-left'
-  | 'top-center'
-  | 'top-right'
-  | 'bottom-left'
-  | 'bottom-center'
-  | 'bottom-right';
-
-export type ToastVariant = 'success' | 'error' | 'warning' | 'info';
-
-export type ToastOptions = {
-  duration?: number;
-  closable?: boolean;
-  position?: ToastPosition;
-  onClose?: () => void;
-};
-
-type ToastItem = {
-  id: string;
-  message: string;
-  variant: ToastVariant;
-  options: ToastOptions;
-  startTime: number;
-  paused: boolean;
-  duration: number;
-};
-
-type ToastContextType = {
-  addToast: (message: string, variant?: ToastVariant, options?: ToastOptions) => string;
-  removeToast: (id: string) => void;
-  handleDismissAll: () => void;
-  handleResumeAll: () => void;
-};
+import {
+  type ToastPosition,
+  type ToastVariant,
+  type ToastOptions,
+  type ToastItem,
+  type ToastContextType,
+  type ToastProviderProps,
+  type ToastContainerProps,
+  type ToastComponentProps,
+} from './Toast.types';
 
 const ToastContext = createContext<ToastContextType>({
   addToast: () => '',
@@ -75,13 +51,6 @@ const positionToClassKey: Record<ToastPosition, keyof typeof toastWrapper> = {
   'bottom-left': 'bottomLeft',
   'bottom-center': 'bottomCenter',
   'bottom-right': 'bottomRight',
-};
-
-type ToastProviderProps = {
-  children: ReactNode;
-  position?: ToastPosition;
-  maxVisible?: number;
-  stacking?: 'stack' | 'replace';
 };
 
 export const ToastProvider = ({
@@ -239,15 +208,6 @@ export const ToastProvider = ({
   );
 };
 
-type ToastContainerProps = {
-  toasts: ToastItem[];
-  position: ToastPosition;
-  pauseId: string | null;
-  onDismiss: (id: string) => void;
-  onDismissAll: () => void;
-  onResumeAll: () => void;
-};
-
 const ToastContainer = ({
   toasts,
   position,
@@ -326,13 +286,6 @@ const ToastContainer = ({
 export const useToast = () => {
   const context = useContext(ToastContext);
   return context;
-};
-
-export type ToastComponentProps = {
-  message: string;
-  variant?: ToastVariant;
-  options?: ToastOptions;
-  className?: string;
 };
 
 export const Toast = ({ message, variant = 'info', options, className }: ToastComponentProps) => {

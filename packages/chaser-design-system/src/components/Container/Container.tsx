@@ -1,16 +1,6 @@
 import React, { forwardRef } from 'react';
 import Box from '../Box';
-import { Sprinkles } from '../../styles/sprinkles.css';
-
-export type ContainerSize = 'sm' | 'md' | 'lg' | 'xl' | 'full';
-
-export type ContainerProps = Sprinkles & {
-  size?: ContainerSize;
-  centerContent?: boolean;
-  children?: React.ReactNode;
-  className?: string;
-  style?: React.CSSProperties;
-};
+import { type ContainerProps, type ContainerSize } from './Container.types';
 
 const sizeMap: Record<ContainerSize, string> = {
   sm: '640px',

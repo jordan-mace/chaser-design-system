@@ -1,11 +1,6 @@
 import React from 'react';
 import { kbd } from './styles.css';
-import { Sprinkles } from '../../styles/sprinkles.css';
-
-export type KbdProps = React.HTMLAttributes<HTMLElement> &
-  Sprinkles & {
-    children: React.ReactNode;
-  };
+import { type KbdProps } from './Kbd.types';
 
 const Kbd = ({ children, className, ...props }: KbdProps) => {
   return (

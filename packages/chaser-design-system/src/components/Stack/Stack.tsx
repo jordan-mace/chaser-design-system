@@ -1,26 +1,6 @@
 import React, { forwardRef } from 'react';
 import Box from '../Box';
-import { Sprinkles } from '../../styles/sprinkles.css';
-
-export type StackDirection = 'row' | 'column';
-export type StackAlign = 'start' | 'center' | 'end' | 'stretch';
-export type StackJustify =
-  | 'start'
-  | 'center'
-  | 'end'
-  | 'between'
-  | 'around'
-  | 'evenly';
-
-export type StackProps = React.HTMLAttributes<HTMLDivElement> &
-  Sprinkles & {
-    direction?: StackDirection;
-    align?: StackAlign;
-    justify?: StackJustify;
-    gap?: 'none' | 'small' | 'medium' | 'large';
-    wrap?: boolean;
-    children?: React.ReactNode;
-  };
+import { type StackProps, type StackAlign, type StackJustify } from './Stack.types';
 
 const alignMap: Record<StackAlign, string> = {
   start: 'flex-start',

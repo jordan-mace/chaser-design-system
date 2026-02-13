@@ -21,34 +21,7 @@ import {
   fileUploadProgressFillVariants,
 } from './styles.css';
 import Box from '../Box';
-import { Sprinkles } from '../../styles/sprinkles.css';
-
-export interface FileUploadFile {
-  id: string;
-  file: File;
-  name: string;
-  size: number;
-  progress: number;
-  status: 'uploading' | 'success' | 'error';
-  errorMessage?: string;
-}
-
-export type FileUploadProps = React.HTMLAttributes<HTMLDivElement> &
-  Sprinkles & {
-    label?: string;
-    files?: FileUploadFile[];
-    onFilesChange?: (files: FileUploadFile[]) => void;
-    onFileAdd?: (files: File[]) => void;
-    onFileRemove?: (fileId: string) => void;
-    accept?: string;
-    multiple?: boolean;
-    maxFileSize?: number;
-    maxFiles?: number;
-    disabled?: boolean;
-    dropzoneText?: string;
-    hint?: string;
-    showProgress?: boolean;
-  };
+import { type FileUploadProps, type FileUploadFile } from './FileUpload.types';
 
 const formatFileSize = (bytes: number): string => {
   if (bytes === 0) return '0 Bytes';

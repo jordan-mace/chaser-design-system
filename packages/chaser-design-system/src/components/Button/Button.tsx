@@ -2,15 +2,7 @@ import clsx from 'clsx';
 import { button, buttonVariants } from './styles.css';
 import React from 'react';
 import Box from '../Box';
-import { Sprinkles } from '../../styles/sprinkles.css';
-
-type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> &
-  Sprinkles & {
-    variant: 'primary' | 'secondary';
-    children?: React.ReactNode;
-    label?: string;
-    fullWidth?: boolean;
-  };
+import { type ButtonProps } from './Button.types';
 
 const Button = ({ label, ...props }: ButtonProps) => {
   return (

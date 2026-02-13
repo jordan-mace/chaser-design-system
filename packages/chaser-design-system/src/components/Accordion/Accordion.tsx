@@ -9,25 +9,17 @@ import {
   accordionGroup,
 } from './styles.css';
 import Box from '../Box';
-import { Sprinkles } from '../../styles/sprinkles.css';
+import {
+  type AccordionContextType,
+  type AccordionProps,
+  type AccordionItemProps,
+} from './Accordion.types';
 
-type AccordionContextType = {
-  allowMultiple?: boolean;
-  expandedItems: Set<string>;
-  toggleItem: (value: string) => void;
-};
-
-const AccordionContext = createContext<AccordionContextType>({
+export const AccordionContext = createContext<AccordionContextType>({
   allowMultiple: false,
   expandedItems: new Set(),
-  toggleItem: () => {},
+  toggleItem: () => { },
 });
-
-type AccordionProps = React.HTMLAttributes<HTMLDivElement> &
-  Sprinkles & {
-    children: React.ReactNode;
-    allowMultiple?: boolean;
-  };
 
 const Accordion = ({
   children,
@@ -66,13 +58,6 @@ const Accordion = ({
     </AccordionContext.Provider>
   );
 };
-
-type AccordionItemProps = React.HTMLAttributes<HTMLDivElement> &
-  Sprinkles & {
-    value: string;
-    title: string;
-    children: React.ReactNode;
-  };
 
 const AccordionItem = ({
   value,

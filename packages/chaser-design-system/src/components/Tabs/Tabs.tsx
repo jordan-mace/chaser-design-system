@@ -9,26 +9,18 @@ import {
   tabContent,
 } from './styles.css';
 import Box from '../Box';
-import { Sprinkles } from '../../styles/sprinkles.css';
-
-type TabsContextType = {
-  activeTab: string;
-  setActiveTab: (value: string) => void;
-  orientation?: 'horizontal' | 'vertical';
-};
+import {
+  type TabsProps,
+  type TabListProps,
+  type TabProps,
+  type TabPanelProps,
+  type TabsContextType,
+} from './Tabs.types';
 
 const TabsContext = createContext<TabsContextType>({
   activeTab: '',
   setActiveTab: () => {},
 });
-
-type TabsProps = React.HTMLAttributes<HTMLDivElement> &
-  Sprinkles & {
-    children: React.ReactNode;
-    defaultValue?: string;
-    orientation?: 'horizontal' | 'vertical';
-    onChange?: (value: string) => void;
-  };
 
 const Tabs = ({
   children,
@@ -58,11 +50,6 @@ const Tabs = ({
   );
 };
 
-type TabListProps = {
-  children: React.ReactNode;
-  className?: string;
-};
-
 const TabList = ({ children, className }: TabListProps) => {
   const { orientation } = useContext(TabsContext);
 
@@ -79,13 +66,6 @@ const TabList = ({ children, className }: TabListProps) => {
       {children}
     </Box>
   );
-};
-
-type TabProps = {
-  value: string;
-  children: React.ReactNode;
-  disabled?: boolean;
-  className?: string;
 };
 
 const Tab = ({ value, children, disabled = false, className }: TabProps) => {
@@ -121,12 +101,6 @@ const Tab = ({ value, children, disabled = false, className }: TabProps) => {
       {children}
     </Box>
   );
-};
-
-type TabPanelProps = {
-  value: string;
-  children: React.ReactNode;
-  className?: string;
 };
 
 const TabPanel = ({ value, children, className }: TabPanelProps) => {

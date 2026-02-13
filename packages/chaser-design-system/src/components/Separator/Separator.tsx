@@ -2,15 +2,7 @@ import clsx from 'clsx';
 import React from 'react';
 import { separator, separatorOrientation } from './styles.css';
 import Box from '../Box';
-import { Sprinkles } from '../../styles/sprinkles.css';
-
-export type SeparatorOrientation = 'horizontal' | 'vertical';
-
-export type SeparatorProps = React.HTMLAttributes<HTMLHRElement> &
-  Sprinkles & {
-    orientation?: SeparatorOrientation;
-    decorative?: boolean;
-  };
+import { type SeparatorProps } from './Separator.types';
 
 const Separator = ({
   orientation = 'horizontal',

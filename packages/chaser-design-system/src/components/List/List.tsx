@@ -1,12 +1,9 @@
 import React from 'react';
 import { list } from './styles.css';
 import Box from '../Box';
-import { Sprinkles } from '../../styles/sprinkles.css';
+import { type ListProps } from './List.types';
 
-const List = ({
-  children,
-  ...props
-}: { children: React.ReactNode } & Sprinkles) => {
+const List = ({ children, ...props }: ListProps) => {
   return (
     <Box as="ul" className={list} {...props}>
       {children}

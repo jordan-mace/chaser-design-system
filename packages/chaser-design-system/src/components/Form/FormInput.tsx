@@ -2,10 +2,8 @@ import clsx from 'clsx';
 import React from 'react';
 import { formInputStyle } from './styles.css';
 import { Input } from '../..';
-import { InputProps } from '../Input/Input';
 import Box from '../Box';
-
-type FormInputProps = React.InputHTMLAttributes<HTMLInputElement> & InputProps;
+import { type FormInputProps } from './FormInput.types';
 
 const FormInput = (props: FormInputProps) => {
   return (

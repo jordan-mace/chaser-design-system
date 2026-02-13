@@ -2,12 +2,7 @@ import clsx from 'clsx';
 import React from 'react';
 import { formStyle } from './styles.css';
 import Box from '../Box';
-import { Sprinkles } from '../../styles/sprinkles.css';
-
-type FormProps = React.FormHTMLAttributes<HTMLFormElement> &
-  Sprinkles & {
-    children?: React.ReactNode;
-  };
+import { type FormProps } from './Form.types';
 
 const Form = (props: FormProps) => {
   return (

@@ -8,24 +8,13 @@ import {
   radioGroupHorizontal,
 } from './styles.css';
 import Box from '../Box';
-import { Sprinkles } from '../../styles/sprinkles.css';
-
-type RadioContextType = {
-  name?: string;
-  value?: string;
-  onChange?: (value: string) => void;
-};
+import {
+  type RadioProps,
+  type RadioGroupProps,
+  type RadioContextType,
+} from './Radio.types';
 
 const RadioContext = createContext<RadioContextType>({});
-
-type RadioProps = Omit<
-  React.InputHTMLAttributes<HTMLInputElement>,
-  'type' | 'value' | 'onChange'
-> &
-  Sprinkles & {
-    label?: string;
-    value: string;
-  };
 
 const Radio = forwardRef<HTMLInputElement, RadioProps>(
   ({ label, className, value, ...props }, ref) => {
@@ -71,15 +60,6 @@ const Radio = forwardRef<HTMLInputElement, RadioProps>(
 );
 
 Radio.displayName = 'Radio';
-
-type RadioGroupProps = {
-  children: React.ReactNode;
-  name: string;
-  value?: string;
-  onChange?: (value: string) => void;
-  layout?: 'vertical' | 'horizontal';
-  className?: string;
-};
 
 const RadioGroup = ({
   children,

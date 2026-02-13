@@ -7,15 +7,7 @@ import {
 } from './styles.css';
 import React from 'react';
 import Box from '../Box';
-import { Sprinkles } from '../../styles/sprinkles.css';
-
-type AlertProps = React.HTMLAttributes<HTMLDivElement> &
-  Sprinkles & {
-    severity?: 'success' | 'warning' | 'error' | 'info';
-    dismissible?: boolean;
-    onDismiss?: () => void;
-    children?: React.ReactNode;
-  };
+import { type AlertProps } from './Alert.types';
 
 const Alert = ({
   severity = 'info',

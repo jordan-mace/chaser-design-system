@@ -11,16 +11,17 @@ import {
   tableContainer,
 } from './styles.css';
 import Box from '../Box';
-import { Sprinkles } from '../../styles/sprinkles.css';
+import {
+  type TableProps,
+  type TheadProps,
+  type TbodyProps,
+  type TfootProps,
+  type TrProps,
+  type ThProps,
+  type TdProps,
+} from './Table.types';
 
-// Context to pass striping info to rows
 const TableContext = createContext<{ striped?: boolean }>({});
-
-type TableProps = React.HTMLAttributes<HTMLTableElement> &
-  Sprinkles & {
-    children: React.ReactNode;
-    striped?: boolean;
-  };
 
 const TableComponent = ({
   children,
@@ -39,22 +40,12 @@ const TableComponent = ({
   );
 };
 
-type TheadProps = {
-  children: React.ReactNode;
-  className?: string;
-};
-
 const Thead = ({ children, className }: TheadProps) => {
   return (
     <Box as="thead" className={clsx(thead, className)}>
       {children}
     </Box>
   );
-};
-
-type TbodyProps = {
-  children: React.ReactNode;
-  className?: string;
 };
 
 const Tbody = ({ children, className }: TbodyProps) => {
@@ -65,22 +56,12 @@ const Tbody = ({ children, className }: TbodyProps) => {
   );
 };
 
-type TfootProps = {
-  children: React.ReactNode;
-  className?: string;
-};
-
 const Tfoot = ({ children, className }: TfootProps) => {
   return (
     <Box as="tfoot" className={clsx(tfoot, className)}>
       {children}
     </Box>
   );
-};
-
-type TrProps = {
-  children: React.ReactNode;
-  className?: string;
 };
 
 const Tr = ({ children, className }: TrProps) => {
@@ -95,24 +76,12 @@ const Tr = ({ children, className }: TrProps) => {
   );
 };
 
-type ThProps = {
-  children?: React.ReactNode;
-  className?: string;
-};
-
 const Th = ({ children, className }: ThProps) => {
   return (
     <Box as="th" className={clsx(th, className)}>
       {children}
     </Box>
   );
-};
-
-type TdProps = {
-  children?: React.ReactNode;
-  className?: string;
-  colSpan?: number;
-  rowSpan?: number;
 };
 
 const Td = ({ children, className, colSpan, rowSpan }: TdProps) => {

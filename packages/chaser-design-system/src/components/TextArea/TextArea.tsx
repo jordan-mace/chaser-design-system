@@ -3,13 +3,7 @@ import React from 'react';
 import { textAreaStyle, label } from './styles.css';
 import { text } from '../Text/styles.css';
 import Box from '../Box';
-import { Sprinkles } from '../../styles/sprinkles.css';
-
-export type TextAreaProps = React.TextareaHTMLAttributes<HTMLTextAreaElement> &
-  Sprinkles & {
-    label?: string;
-    fullWidth?: boolean;
-  };
+import { type TextAreaProps } from './TextArea.types';
 
 const TextArea = (props: TextAreaProps) => {
   return (

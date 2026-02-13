@@ -1,12 +1,6 @@
 import React, { forwardRef } from 'react';
-import Box, { type BoxProps } from '../Box';
-
-export type AspectRatioValue = '1/1' | '4/3' | '16/9' | '21/9' | number;
-
-export interface AspectRatioProps extends BoxProps {
-  ratio?: AspectRatioValue;
-  children?: React.ReactNode;
-}
+import Box from '../Box';
+import { type AspectRatioProps } from './AspectRatio.types';
 
 const AspectRatio = forwardRef<HTMLElement, AspectRatioProps>(
   ({ ratio = '1/1', children, ...props }, ref) => {

@@ -1,11 +1,6 @@
 import React from 'react';
 import { visuallyHidden } from './styles.css';
-import { Sprinkles } from '../../styles/sprinkles.css';
-
-export type VisuallyHiddenProps = Sprinkles & {
-  children: React.ReactNode;
-  as?: React.ElementType;
-};
+import { type VisuallyHiddenProps } from './VisuallyHidden.types';
 
 const VisuallyHidden = ({
   children,

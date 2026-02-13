@@ -9,19 +9,7 @@ import {
   breadcrumbCurrent,
 } from './styles.css';
 import Box from '../Box';
-import { Sprinkles } from '../../styles/sprinkles.css';
-
-type BreadcrumbItem = {
-  label: string;
-  href?: string;
-  current?: boolean;
-};
-
-type BreadcrumbProps = React.HTMLAttributes<HTMLDivElement> &
-  Sprinkles & {
-    items: BreadcrumbItem[];
-    separator?: string;
-  };
+import { type BreadcrumbProps, type BreadcrumbItem } from './Breadcrumb.types';
 
 const Breadcrumb = ({ items, className, separator = '/' }: BreadcrumbProps) => {
   return (

@@ -2,13 +2,7 @@ import clsx from 'clsx';
 import { sprinkles, type Sprinkles } from '../../styles/sprinkles.css';
 import { reset } from './reset.css';
 import React, { forwardRef } from 'react';
-
-type BoxProps = Sprinkles & {
-  as?: React.ElementType;
-  children?: React.ReactNode;
-  className?: string;
-  [key: string]: unknown;
-};
+import { type BoxProps } from './Box.types';
 
 const Box = forwardRef<HTMLElement, BoxProps>((props, ref) => {
   const { as: Component = 'div', className, children, ...rest } = props;
@@ -69,4 +63,4 @@ const Box = forwardRef<HTMLElement, BoxProps>((props, ref) => {
 Box.displayName = 'Box';
 
 export default Box;
-export type { BoxProps };
+export type { BoxProps } from './Box.types';

@@ -2,21 +2,7 @@ import clsx from 'clsx';
 import React, { forwardRef } from 'react';
 import { select, selectLabel, selectWrapper } from './styles.css';
 import Box from '../Box';
-import { Sprinkles } from '../../styles/sprinkles.css';
-
-type SelectOption = {
-  value: string;
-  label: string;
-  disabled?: boolean;
-};
-
-type SelectProps = Omit<React.SelectHTMLAttributes<HTMLSelectElement>, 'size'> &
-  Sprinkles & {
-    label?: string;
-    options: SelectOption[];
-    error?: boolean;
-    fullWidth?: boolean;
-  };
+import { type SelectProps, type SelectOption } from './Select.types';
 
 const Select = forwardRef<HTMLSelectElement, SelectProps>(
   (

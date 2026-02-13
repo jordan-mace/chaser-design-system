@@ -7,16 +7,7 @@ import {
   avatarWrapper,
 } from './styles.css';
 import Box from '../Box';
-import { Sprinkles } from '../../styles/sprinkles.css';
-
-type AvatarProps = React.HTMLAttributes<HTMLDivElement> &
-  Sprinkles & {
-    alt?: string;
-    src?: string;
-    size?: 'small' | 'medium' | 'large' | 'xlarge';
-    children?: React.ReactNode;
-    fallback?: string;
-  };
+import { type AvatarProps } from './Avatar.types';
 
 const Avatar = ({
   alt,

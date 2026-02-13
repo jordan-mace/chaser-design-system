@@ -11,24 +11,7 @@ import {
   drawerFooter,
 } from './styles.css';
 import Box from '../Box';
-import { Sprinkles } from '../../styles/sprinkles.css';
-
-export type DrawerPosition = 'left' | 'right' | 'top' | 'bottom';
-export type DrawerSize = 'small' | 'medium' | 'large' | 'full';
-
-type DrawerPropsBase = React.HTMLAttributes<HTMLDivElement> & {
-  isOpen: boolean;
-  onClose: () => void;
-  title?: string;
-  position?: DrawerPosition;
-  size?: DrawerSize;
-  children?: React.ReactNode;
-  footer?: React.ReactNode;
-  showCloseButton?: boolean;
-  closeOnOverlayClick?: boolean;
-};
-
-export type DrawerProps = DrawerPropsBase & Sprinkles;
+import { type DrawerProps, type DrawerPosition, type DrawerSize } from './Drawer.types';
 
 const sizeMap: Record<DrawerPosition, Record<DrawerSize, string>> = {
   left: {

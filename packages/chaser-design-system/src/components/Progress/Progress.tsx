@@ -7,16 +7,7 @@ import {
   progressLabel,
 } from './styles.css';
 import Box from '../Box';
-import { Sprinkles } from '../../styles/sprinkles.css';
-
-type ProgressProps = React.HTMLAttributes<HTMLDivElement> &
-  Sprinkles & {
-    value: number;
-    max?: number;
-    label?: string;
-    showPercentage?: boolean;
-    variant?: 'default' | 'success' | 'warning' | 'error';
-  };
+import { type ProgressProps } from './Progress.types';
 
 const Progress = ({
   value,

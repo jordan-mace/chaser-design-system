@@ -11,17 +11,7 @@ import {
 } from './styles.css';
 import React, { useState } from 'react';
 import Box from '../Box';
-import { Sprinkles } from '../../styles/sprinkles.css';
-
-export type TooltipPosition = 'top' | 'bottom' | 'left' | 'right';
-
-export type TooltipProps = React.HTMLAttributes<HTMLDivElement> &
-  Sprinkles & {
-    content: string;
-    position?: TooltipPosition;
-    showArrow?: boolean;
-    children: React.ReactNode;
-  };
+import { type TooltipProps } from './Tooltip.types';
 
 const Tooltip = ({
   content,
