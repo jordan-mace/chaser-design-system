@@ -1,5 +1,11 @@
 # @jordan-mace/chaser-design-system
 
+## 2.1.1
+
+### Patch Changes
+
+- 97c246e: Fix CSS layer inheritance by using globalLayer with root chaser layer
+
 ## 2.1.0
 
 ### Minor Changes
