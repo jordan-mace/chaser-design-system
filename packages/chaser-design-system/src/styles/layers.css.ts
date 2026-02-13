@@ -1,3 +1,5 @@
-export const resetLayer = 'reset' as const;
-export const themeLayer = 'theme' as const;
-export const componentsLayer = 'components' as const;
+import { layer } from '@vanilla-extract/css';
+
+export const resetLayer = layer('reset');
+export const themeLayer = layer({ parent: resetLayer }, 'theme');
+export const componentsLayer = layer({ parent: themeLayer }, 'components');
