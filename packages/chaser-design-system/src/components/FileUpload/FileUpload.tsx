@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import React, { useState, useRef, useCallback } from 'react';
+import { useState, useRef, useCallback } from 'react';
 import {
   fileUploadContainer,
   fileUploadDropzone,
@@ -21,7 +21,7 @@ import {
   fileUploadProgressFillVariants,
 } from './styles.css';
 import Box from '../Box';
-import { type FileUploadProps, type FileUploadFile } from './FileUpload.types';
+import { type FileUploadProps } from './FileUpload.types';
 
 const formatFileSize = (bytes: number): string => {
   if (bytes === 0) return '0 Bytes';
@@ -34,7 +34,6 @@ const formatFileSize = (bytes: number): string => {
 const FileUpload = ({
   label,
   files = [],
-  onFilesChange,
   onFileAdd,
   onFileRemove,
   accept,

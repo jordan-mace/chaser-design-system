@@ -1,6 +1,4 @@
 import type { Meta, StoryObj } from '@storybook/react-webpack5';
-import React from 'react';
-
 import { P } from '.';
 
 const meta = {

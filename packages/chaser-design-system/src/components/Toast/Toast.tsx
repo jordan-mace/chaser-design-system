@@ -288,7 +288,8 @@ export const useToast = () => {
   return context;
 };
 
-export const Toast = ({ message, variant = 'info', options, className }: ToastComponentProps) => {
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+export const Toast = (_props: ToastComponentProps) => {
   return null;
 };
 

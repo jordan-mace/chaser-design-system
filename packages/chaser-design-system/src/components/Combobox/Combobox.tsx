@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import React, { useState, useRef, useEffect, useCallback } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import {
   comboboxContainer,
   comboboxInput,

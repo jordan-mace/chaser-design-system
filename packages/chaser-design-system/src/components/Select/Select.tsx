@@ -1,8 +1,8 @@
 import clsx from 'clsx';
-import React, { forwardRef } from 'react';
+import { forwardRef } from 'react';
 import { select, selectLabel, selectWrapper } from './styles.css';
 import Box from '../Box';
-import { type SelectProps, type SelectOption } from './Select.types';
+import { type SelectProps } from './Select.types';
 
 const Select = forwardRef<HTMLSelectElement, SelectProps>(
   (

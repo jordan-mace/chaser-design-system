@@ -1,5 +1,4 @@
-import { style, styleVariants, keyframes } from '@vanilla-extract/css';
-import { vars } from '../../styles/theme.css';
+import { styleVariants, keyframes } from '@vanilla-extract/css';
 import { styleWithLayer } from '../../styles/utils';
 
 const collapseIn = keyframes({

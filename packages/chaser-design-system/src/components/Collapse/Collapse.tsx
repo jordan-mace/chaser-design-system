@@ -1,9 +1,8 @@
 import clsx from 'clsx';
-import React, { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import {
   collapseContainer,
   collapseContent,
-  collapseAnimation,
 } from './styles.css';
 import Box from '../Box';
 import { type CollapseProps } from './Collapse.types';

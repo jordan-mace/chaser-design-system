@@ -6,9 +6,8 @@ import {
   badgeDot,
   badgeDotSizes,
 } from './styles.css';
-import React from 'react';
 import Box from '../Box';
-import { type BadgeProps, type BadgeVariant, type BadgeSize } from './Badge.types';
+import { type BadgeProps } from './Badge.types';
 
 const Badge = ({
   variant = 'default',

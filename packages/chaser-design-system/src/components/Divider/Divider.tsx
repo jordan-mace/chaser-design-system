@@ -5,9 +5,8 @@ import {
   dividerSizes,
   dividerVerticalSizes,
 } from './styles.css';
-import React from 'react';
 import Box from '../Box';
-import { type DividerProps, type DividerOrientation, type DividerSize } from './Divider.types';
+import { type DividerProps } from './Divider.types';
 
 const Divider = ({
   orientation = 'horizontal',

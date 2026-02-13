@@ -1,4 +1,4 @@
-import { style } from '@vanilla-extract/css';
+
 import { styleWithLayer } from '../../styles/utils';
 
 export const icon = styleWithLayer({

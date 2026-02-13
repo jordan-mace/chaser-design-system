@@ -1,8 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react-webpack5';
 
 import { Breadcrumb } from '.';
-import React from 'react';
-
 const meta = {
   title: 'Components/Breadcrumb',
   component: Breadcrumb,

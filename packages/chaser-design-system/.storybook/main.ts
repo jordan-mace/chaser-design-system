@@ -20,7 +20,7 @@ const config: StorybookConfig = {
         assetPrefix: process.env.STORYBOOK_BASE_URL || '/',
       },
       tools: {
-        rspack: (config, { addRules, appendPlugins, rspack }) => {
+        rspack: (config, { addRules, appendPlugins }) => {
           appendPlugins([new VanillaExtractPlugin()]);
           addRules([
             {

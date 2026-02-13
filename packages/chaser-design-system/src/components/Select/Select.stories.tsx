@@ -2,8 +2,6 @@ import type { Meta, StoryObj } from '@storybook/react-webpack5';
 import { fn } from 'storybook/test';
 
 import { Select } from '.';
-import React from 'react';
-
 const meta = {
   title: 'Components/Select',
   component: Select,

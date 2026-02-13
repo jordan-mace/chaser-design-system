@@ -1,5 +1,4 @@
 import clsx from 'clsx';
-import React from 'react';
 import {
   breadcrumb,
   breadcrumbList,
@@ -9,7 +8,7 @@ import {
   breadcrumbCurrent,
 } from './styles.css';
 import Box from '../Box';
-import { type BreadcrumbProps, type BreadcrumbItem } from './Breadcrumb.types';
+import { type BreadcrumbProps } from './Breadcrumb.types';
 
 const Breadcrumb = ({ items, className, separator = '/' }: BreadcrumbProps) => {
   return (

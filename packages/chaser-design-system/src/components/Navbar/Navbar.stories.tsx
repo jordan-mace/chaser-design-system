@@ -1,9 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react-webpack5';
 
-import { fn } from 'storybook/test';
-
 import { Navbar, NavbarItem } from './';
-import React from 'react';
 import { P } from '../Text';
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories#default-export
