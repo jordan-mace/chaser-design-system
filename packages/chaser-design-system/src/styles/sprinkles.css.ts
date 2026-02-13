@@ -3,9 +3,11 @@ import { componentsLayer } from './layers.css';
 
 const space = {
   none: 0,
-  small: '4px',
-  medium: '8px',
-  large: '16px',
+  xsmall: "0.5rem",
+  small: "1rem",
+  medium: "2rem",
+  large: "3rem",
+  xlarge: "4rem",
   auto: 'auto',
   // etc.
 };
