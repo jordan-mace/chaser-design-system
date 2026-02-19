@@ -1,6 +1,6 @@
 {
   "name": "@jordan-mace/chaser-design-system",
-  "version": "2.1.2",
+  "version": "2.2.0",
   "type": "module",
   "style": "./dist/index.css",
   "sideEffects": true,
